@@ -350,5 +350,437 @@ function searchVehicles(){
 </script>
 
 </body>
+</html><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f3f6;
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background:#111827;
+    color:white;
+    padding:20px 15px;
+    text-align:center;
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:17px;
+}
+
+/* SEARCH */
+.search-area{
+    background:white;
+    padding:20px 15px;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+.search-box{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    position:relative;
+}
+
+#searchInput{
+    width:100%;
+    padding:18px 20px;
+    font-size:20px;
+    border:2px solid #2563eb;
+    border-radius:14px;
+    outline:none;
+}
+
+#searchInput:focus{
+    border-color:#111827;
+}
+
+/* VEHICLE AREA */
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    padding:25px 15px 50px;
+}
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:25px;
+}
+
+/* CARD */
+.vehicle-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+    transition:.2s;
+}
+
+.vehicle-card:hover{
+    transform:translateY(-3px);
+}
+
+/* PHOTO */
+.vehicle-photo{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    display:block;
+    background:#ddd;
+}
+
+/* DETAILS */
+.vehicle-details{
+    padding:20px;
+}
+
+.vehicle-title{
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:25px;
+    font-weight:bold;
+    color:#dc2626;
+    margin-bottom:15px;
+}
+
+.info{
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.description{
+    font-size:17px;
+    line-height:1.6;
+    color:#444;
+    margin-bottom:18px;
+}
+
+/* BUTTON */
+.contact-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#16a34a;
+    color:white;
+    font-size:19px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.contact-btn:hover{
+    background:#15803d;
+}
+
+/* NO RESULT */
+#noResult{
+    display:none;
+    text-align:center;
+    font-size:21px;
+    font-weight:bold;
+    padding:40px 10px;
+}
+
+/* FOOTER */
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    font-size:16px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    header h1{
+        font-size:25px;
+    }
+
+    header p{
+        font-size:15px;
+    }
+
+    #searchInput{
+        font-size:18px;
+        padding:16px;
+    }
+
+    .container{
+        padding:20px 10px 40px;
+    }
+
+    .vehicle-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .vehicle-photo{
+        height:250px;
+    }
+
+    .vehicle-title{
+        font-size:24px;
+    }
+
+    .price{
+        font-size:24px;
+    }
+
+    .info{
+        font-size:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚗 Mahesh Vehicle Market</h1>
+    <p>වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</header>
+
+<!-- SEARCH BAR -->
+<div class="search-area">
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 වාහනය සොයන්න... (උදා: Jeep, Bajaj, Toyota)"
+            onkeyup="searchVehicles()"
+        >
+    </div>
+</div>
+
+<main class="container">
+
+    <div class="vehicle-grid" id="vehicleGrid">
+
+        <!-- JEEP -->
+        <div class="vehicle-card" data-search="jeep ජීප්">
+            
+            <img
+                class="vehicle-photo"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/2017_Toyota_Aqua.jpg"
+                alt="Jeep"
+            >
+
+            <div class="vehicle-details">
+
+                <div class="vehicle-title">
+                    🚙 Jeep
+                </div>
+
+                <div class="price">
+                    රු. 30,750,000
+                </div>
+
+                <div class="info">
+                    📅 වර්ෂය: 2017<br>
+                    🔧 Parts: හොඳ තත්ත්වයේ<br>
+                    ⚙️ තත්ත්වය: හොඳයි
+                </div>
+
+                <div class="description">
+                    හොඳ තත්ත්වයේ වාහනයකි.
+                    වැඩි විස්තර සඳහා අප අමතන්න.
+                </div>
+
+                <button class="contact-btn"
+                    onclick="contactUs('Jeep')">
+                    📞 විස්තර විමසන්න
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- BAJAJ -->
+        <div class="vehicle-card" data-search="bajaj bajaj ත්‍රීවිල් ත්‍රිරෝද රථ">
+
+            <img
+                class="vehicle-photo"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/2017_Toyota_Aqua.jpg"
+                alt="Bajaj Three Wheel"
+            >
+
+            <div class="vehicle-details">
+
+                <div class="vehicle-title">
+                    🛺 Bajaj Three Wheel
+                </div>
+
+                <div class="price">
+                    රු. 10,250,000
+                </div>
+
+                <div class="info">
+                    📅 වර්ෂය: 2016<br>
+                    🔧 Parts: හොඳ තත්ත්වයේ<br>
+                    ⚙️ තත්ත්වය: හොඳයි
+                </div>
+
+                <div class="description">
+                    2016 Bajaj ත්‍රීවිල් රථයකි.
+                    වැඩි විස්තර සඳහා අප අමතන්න.
+                </div>
+
+                <button class="contact-btn"
+                    onclick="contactUs('Bajaj Three Wheel')">
+                    📞 විස්තර විමසන්න
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- TOYOTA AQUA -->
+        <div class="vehicle-card" data-search="toyota aqua ටොයෝටා aqua">
+
+            <img
+                class="vehicle-photo"
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/2017_Toyota_Aqua.jpg"
+                alt="Toyota Aqua"
+            >
+
+            <div class="vehicle-details">
+
+                <div class="vehicle-title">
+                    🚘 Toyota Aqua
+                </div>
+
+                <div class="price">
+                    රු. 12,500,000
+                </div>
+
+                <div class="info">
+                    📅 වර්ෂය: 2017<br>
+                    🔧 Parts: හොඳ තත්ත්වයේ<br>
+                    ⚙️ තත්ත්වය: හොඳයි
+                </div>
+
+                <div class="description">
+                    Toyota Aqua වාහනයකි.
+                    වැඩි විස්තර සඳහා අප අමතන්න.
+                </div>
+
+                <button class="contact-btn"
+                    onclick="contactUs('Toyota Aqua')">
+                    📞 විස්තර විමසන්න
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="noResult">
+        😔 වාහනය හමු නොවීය.
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 Mahesh Vehicle Market</p>
+    <p>වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</footer>
+
+
+<script>
+
+/* SEARCH FUNCTION */
+function searchVehicles(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let cards =
+        document.querySelectorAll(".vehicle-card");
+
+    let found = 0;
+
+    cards.forEach(function(card){
+
+        let text =
+            card.getAttribute("data-search")
+            .toLowerCase();
+
+        if(text.includes(input)){
+
+            card.style.display = "";
+
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    let noResult =
+        document.getElementById("noResult");
+
+    if(found === 0){
+
+        noResult.style.display = "block";
+
+    }else{
+
+        noResult.style.display = "none";
+
+    }
+}
+
+
+/* CONTACT BUTTON */
+function contactUs(vehicle){
+
+    alert(
+        "ඔබ තෝරාගත් වාහනය: " +
+        vehicle +
+        "\n\nවැඩි විස්තර සඳහා Mahesh Vehicle Market අමතන්න."
+    );
+
+}
+
+</script>
+
+</body>
 </html>
 </div>
