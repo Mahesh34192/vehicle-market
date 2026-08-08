@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahesh Vehicle Market</title>
 
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f4f7;
+  color:#222;
+}
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+}
+header h1{margin:0;font-size:28px}
+header p{margin:8px 0 0}
+
+nav{
+  background:#2563eb;
+  padding:12px;
+  text-align:center;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  margin-bottom:20px;
+}
+.hero h2{margin-top:0}
+
+.btn{
+  display:inline-block;
+  background:#16a34a;
+  color:white;
+  padding:12px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  border:0;
+  cursor:pointer;
+}
+
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.vehicle{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 10px #0002;
+}
+.vehicle img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+}
+.vehicle-content{padding:15px}
+.vehicle h3{margin-top:0}
+.price{
+  color:#dc2626;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.form-box{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  margin-top:25px;
+}
+input,textarea,select{
+  width:100%;
+  padding:12px;
+  margin:7px 0 14px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚗 Mahesh Vehicle Market</h1>
+  <p>ශ්‍රී ලංකාවේ වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</header>
+
+<nav>
+  <a href="#home">මුල් පිටුව</a>
+  <a href="#vehicles">වාහන</a>
+  <a href="#order">Order කරන්න</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+
+<section class="hero" id="home">
+  <h2>🚘 ඔබට අවශ්‍ය වාහනය මෙතැනින් සොයාගන්න</h2>
+  <p>වාහන විස්තර, මිල සහ අනෙකුත් තොරතුරු බලන්න.</p>
+  <a class="btn" href="#vehicles">වාහන බලන්න</a>
+</section>
+
+<section id="vehicles">
+<h2>🚗 අපගේ වාහන</h2>
+
+<div class="vehicle-grid">
+
+<!-- Vehicle 1 -->
+<div class="vehicle">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/2017_Toyota_Aqua.jpg" alt="Toyota Aqua">
+<div class="vehicle-content">
+<h3>Toyota Aqua 2017</h3>
+<p>හොඳ තත්ත්වයේ Toyota Aqua රථයකි.</p>
+<p class="price">රු. 7,500,000</p>
+<a class="btn" href="#order">Order කරන්න</a>
+</div>
+</div>
+
+<!-- Vehicle 2 -->
+<div class="vehicle">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Bajaj_RE.jpg" alt="Bajaj Three Wheeler">
+<div class="vehicle-content">
+<h3>Bajaj Three Wheeler 2016</h3>
+<p>2016 Bajaj ත්‍රීවිල් රථයකි.</p>
+<p class="price">රු. 10,250,000</p>
+<a class="btn" href="#order">Order කරන්න</a>
+</div>
+</div>
+
+<!-- Vehicle 3 -->
+<div class="vehicle">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Toyota_Prius_2016.jpg" alt="Toyota Prius">
+<div class="vehicle-content">
+<h3>Toyota Prius</h3>
+<p>ඉන්ධන ඉතිරිකරන ජනප්‍රිය වාහනයකි.</p>
+<p class="price">මිල විමසන්න</p>
+<a class="btn" href="#order">Order කරන්න</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="form-box" id="order">
+<h2>📋 වාහනයක් Order කරන්න</h2>
+
+<form action="https://formsubmit.co/maheshgunawardhana05@gmail.com" method="POST">
+
+<input type="hidden" name="_subject" value="Mahesh Vehicle Market - New Order">
+<input type="hidden" name="_captcha" value="false">
+
+<label>ඔබගේ නම</label>
+<input type="text" name="name" placeholder="නම ඇතුළත් කරන්න" required>
+
+<label>දුරකථන අංකය</label>
+<input type="tel" name="phone" placeholder="දුරකථන අංකය" required>
+
+<label>ඔබට අවශ්‍ය වාහනය</label>
+<input type="text" name="vehicle" placeholder="වාහනයේ නම / Model එක" required>
+
+<label>අමතර විස්තර</label>
+<textarea name="message" rows="5" placeholder="ඔබගේ විස්තර මෙතැන ලියන්න"></textarea>
+
+<button class="btn" type="submit">Order යවන්න</button>
+
+</form>
+</section>
+
+<section class="form-box" id="contact">
+<h2>📞 Contact</h2>
+<p><b>Mahesh Vehicle Market</b></p>
+<p>වාහනයක් ගැන විස්තර දැනගැනීමට අපව සම්බන්ධ කරගන්න.</p>
+<p>📱 WhatsApp / Phone: 0751551758</p>
+</section>
+
+<section class="form-box">
+<h2>🏦 ගෙවීම් විස්තර</h2>
+<p>වාහනයක් මිලදී ගැනීමට පෙර අප සමඟ සම්බන්ධ වී ගෙවීම් තොරතුරු තහවුරු කරගන්න.</p>
+<p><b>⚠️ වැදගත්:</b> වාහනය පරීක්ෂා කර විස්තර තහවුරු කිරීමෙන් පසුව පමණක් ගෙවීම් කරන්න.</p>
+</section>
+
+</div>
+
+<footer>
+<p>© 2026 Mahesh Vehicle Market</p>
+<p>All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
