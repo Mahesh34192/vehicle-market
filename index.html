@@ -1,5 +1,319 @@
 <div class="search-box"><!DOCTYPE html>
+<html lang="si"><!DOCTYPE html>
 <html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f4f7;
+  color:#222;
+}
+
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:18px 10px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:7px 0 0;
+  font-size:15px;
+}
+
+.search-box{
+  padding:15px;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+}
+
+#search{
+  width:100%;
+  padding:14px;
+  border:2px solid #ddd;
+  border-radius:10px;
+  font-size:17px;
+  outline:none;
+}
+
+#search:focus{
+  border-color:#2563eb;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+}
+
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.vehicle-card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.vehicle-photo{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+  background:#ddd;
+}
+
+.vehicle-info{
+  padding:17px;
+}
+
+.vehicle-info h2{
+  margin:0 0 10px;
+  font-size:23px;
+}
+
+.price{
+  color:#d60000;
+  font-size:22px;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+.details{
+  font-size:16px;
+  line-height:1.7;
+}
+
+.contact{
+  display:block;
+  text-align:center;
+  margin-top:15px;
+  padding:12px;
+  background:#16a34a;
+  color:white;
+  text-decoration:none;
+  border-radius:9px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.no-result{
+  display:none;
+  text-align:center;
+  padding:30px;
+  font-size:18px;
+}
+
+footer{
+  margin-top:30px;
+  padding:20px;
+  text-align:center;
+  background:#111827;
+  color:white;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:23px;
+  }
+
+  .container{
+    padding:12px;
+  }
+
+  .vehicle-grid{
+    grid-template-columns:1fr;
+  }
+
+  .vehicle-photo{
+    height:240px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚘 Mahesh Vehicle Market</h1>
+  <p>වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</header>
+
+<div class="search-box">
+  <input
+    type="text"
+    id="search"
+    placeholder="🔎 වාහනය සොයන්න... BMW / Jeep / Bajaj"
+  >
+</div>
+
+<div class="container">
+
+  <div class="vehicle-grid" id="vehicleGrid">
+
+    <!-- JEEP -->
+    <div class="vehicle-card vehicle"
+         data-search="jeep ජිප්">
+      
+      <img
+        class="vehicle-photo"
+        src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=80"
+        alt="Jeep"
+      >
+
+      <div class="vehicle-info">
+        <h2>🚙 Jeep</h2>
+
+        <div class="price">
+          රු. 30,750,000
+        </div>
+
+        <div class="details">
+          <b>වාහන වර්ගය:</b> Jeep<br>
+          <b>තත්ත්වය:</b> හොඳ තත්ත්වයේ<br>
+          <b>වර්ෂය:</b> 2018<br>
+          <b>විස්තර:</b> සුවපහසු සහ ශක්තිමත් Jeep රථයකි.
+        </div>
+
+        <a class="contact" href="tel:0751551758">
+          📞 විමසන්න
+        </a>
+      </div>
+    </div>
+
+
+    <!-- BMW -->
+    <div class="vehicle-card vehicle"
+         data-search="bmw බීඑම්ඩබ්ලිව් car කාර්">
+
+      <img
+        class="vehicle-photo"
+        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1000&q=80"
+        alt="BMW"
+      >
+
+      <div class="vehicle-info">
+        <h2>🚗 BMW</h2>
+
+        <div class="price">
+          රු. 6,700,000
+        </div>
+
+        <div class="details">
+          <b>වාහන වර්ගය:</b> BMW Car<br>
+          <b>තත්ත්වය:</b> හොඳ තත්ත්වයේ<br>
+          <b>වර්ෂය:</b> 2017<br>
+          <b>විස්තර:</b> සුඛෝපභෝගී BMW කාර් රථයකි.
+        </div>
+
+        <a class="contact" href="tel:0751551758">
+          📞 විමසන්න
+        </a>
+      </div>
+    </div>
+
+
+    <!-- BAJAJ THREE WHEEL -->
+    <div class="vehicle-card vehicle"
+         data-search="bajaj threewheel three wheel ත්‍රීවිල් බජාජ්">
+
+      <img
+        class="vehicle-photo"
+        src="https://images.unsplash.com/photo-1617814076668-8dfc3f3a9d9e?auto=format&fit=crop&w=1000&q=80"
+        alt="Bajaj Three Wheel"
+      >
+
+      <div class="vehicle-info">
+        <h2>🛺 Bajaj Three Wheel</h2>
+
+        <div class="price">
+          රු. 10,250,000
+        </div>
+
+        <div class="details">
+          <b>වාහන වර්ගය:</b> Bajaj Three Wheel<br>
+          <b>තත්ත්වය:</b> හොඳ තත්ත්වයේ<br>
+          <b>වර්ෂය:</b> 2016<br>
+          <b>විස්තර:</b> දෛනික භාවිතයට සුදුසු ත්‍රීවිල් රථයකි.
+        </div>
+
+        <a class="contact" href="tel:0751551758">
+          📞 විමසන්න
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="no-result" id="noResult">
+    ❌ වාහනය හමු වුණේ නැහැ.
+  </div>
+
+</div>
+
+<footer>
+  <b>Mahesh Vehicle Market</b><br>
+  ඔබට අවශ්‍ය වාහනය අපෙන් සොයාගන්න.
+</footer>
+
+
+<script>
+const search = document.getElementById("search");
+const vehicles = document.querySelectorAll(".vehicle");
+const noResult = document.getElementById("noResult");
+
+search.addEventListener("input", function(){
+
+  const text = this.value.toLowerCase().trim();
+  let found = 0;
+
+  vehicles.forEach(function(vehicle){
+
+    const data = vehicle
+      .getAttribute("data-search")
+      .toLowerCase();
+
+    if(data.includes(text)){
+      vehicle.style.display = "block";
+      found++;
+    }else{
+      vehicle.style.display = "none";
+    }
+
+  });
+
+  if(found === 0){
+    noResult.style.display = "block";
+  }else{
+    noResult.style.display = "none";
+  }
+
+});
+</script>
+
+</body>
+</html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
