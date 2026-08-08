@@ -22,5 +22,333 @@
 
   <button onclick="alert('Jeep රථය පිළිබඳ වැඩි විස්තර සඳහා අපව අමතන්න.')">
     📞 වැඩි විස්තර
-  </button>
+  </button><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f2f2f2;
+    color:#222;
+}
+
+header{
+    background:#111;
+    color:white;
+    padding:20px 15px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:30px;
+}
+
+header p{
+    margin:8px 0 0;
+    font-size:16px;
+}
+
+.search-box{
+    padding:18px;
+    background:white;
+    text-align:center;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+
+.search-box input{
+    width:95%;
+    max-width:600px;
+    padding:15px;
+    border:2px solid #222;
+    border-radius:10px;
+    font-size:18px;
+    outline:none;
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:25px auto;
+}
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+}
+
+.vehicle-card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,0.18);
+}
+
+.vehicle-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    display:block;
+}
+
+.vehicle-info{
+    padding:20px;
+}
+
+.vehicle-title{
+    font-size:27px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.vehicle-price{
+    font-size:26px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.vehicle-detail{
+    font-size:20px;
+    font-weight:600;
+    line-height:1.7;
+    margin:5px 0;
+}
+
+.description{
+    font-size:18px;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+.contact-btn{
+    display:block;
+    width:100%;
+    margin-top:18px;
+    padding:15px;
+    background:#111;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.contact-btn:hover{
+    background:#333;
+}
+
+.no-result{
+    display:none;
+    text-align:center;
+    font-size:20px;
+    padding:30px;
+}
+
+footer{
+    margin-top:35px;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:25px 10px;
+    font-size:16px;
+}
+
+@media(max-width:500px){
+
+    header h1{
+        font-size:25px;
+    }
+
+    .vehicle-card img{
+        height:210px;
+    }
+
+    .vehicle-title{
+        font-size:25px;
+    }
+
+    .vehicle-price{
+        font-size:24px;
+    }
+
+    .vehicle-detail{
+        font-size:19px;
+    }
+
+    .description{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚗 Mahesh Vehicle Market</h1>
+    <p>ශ්‍රී ලංකාවේ වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</header>
+
+<div class="search-box">
+    <input 
+        type="text" 
+        id="searchInput"
+        placeholder="🔍 වාහනයක් සොයන්න..."
+        onkeyup="searchVehicles()"
+    >
+</div>
+
+<div class="container">
+
+    <div class="vehicle-grid" id="vehicleList">
+
+        <!-- JEEP -->
+        <div class="vehicle-card">
+
+            <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/2017_Toyota_Aqua.jpg"
+                alt="Jeep"
+            >
+
+            <div class="vehicle-info">
+
+                <div class="vehicle-title">
+                    🚙 Jeep
+                </div>
+
+                <div class="vehicle-price">
+                    💰 මිල: රු. 30,750,000
+                </div>
+
+                <div class="vehicle-detail">
+                    📅 වර්ෂය: 2020
+                </div>
+
+                <div class="vehicle-detail">
+                    🔧 Parts: සියලුම Parts තිබේ
+                </div>
+
+                <div class="vehicle-detail">
+                    ⚙️ තත්ත්වය: හොඳ තත්ත්වයේ
+                </div>
+
+                <div class="description">
+                    📝 විස්තර:<br>
+                    මෙම වාහනය හොඳ තත්ත්වයේ පවතින අතර
+                    වැඩි විස්තර සඳහා අප අමතන්න.
+                </div>
+
+                <a class="contact-btn" href="tel:0751551758">
+                    📞 වැඩි විස්තර සඳහා අමතන්න
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- BAJAJ THREE WHEEL -->
+        <div class="vehicle-card">
+
+            <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/f/f4/2017_Toyota_Aqua.jpg"
+                alt="Bajaj Three Wheel"
+            >
+
+            <div class="vehicle-info">
+
+                <div class="vehicle-title">
+                    🛺 Bajaj Three Wheel
+                </div>
+
+                <div class="vehicle-price">
+                    💰 මිල: රු. 10,250,000
+                </div>
+
+                <div class="vehicle-detail">
+                    📅 වර්ෂය: 2016
+                </div>
+
+                <div class="vehicle-detail">
+                    🔧 Parts: සියලුම Parts තිබේ
+                </div>
+
+                <div class="vehicle-detail">
+                    ⚙️ තත්ත්වය: හොඳ තත්ත්වයේ
+                </div>
+
+                <div class="description">
+                    📝 විස්තර:<br>
+                    Bajaj Three Wheel එක හොඳ තත්ත්වයේ ඇත.
+                    වැඩි විස්තර සඳහා අප අමතන්න.
+                </div>
+
+                <a class="contact-btn" href="tel:0751551758">
+                    📞 වැඩි විස්තර සඳහා අමතන්න
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="no-result" id="noResult">
+        ❌ වාහනයක් හමු නොවීය
+    </div>
+
+</div>
+
+<footer>
+    <strong>Mahesh Vehicle Market</strong><br>
+    ඔබගේ වාහනය සොයාගන්න ❤️
+</footer>
+
+
+<script>
+
+function searchVehicles(){
+
+    let input = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let cards = document
+        .querySelectorAll(".vehicle-card");
+
+    let found = false;
+
+    cards.forEach(function(card){
+
+        let text = card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+            card.style.display = "block";
+            found = true;
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+    document.getElementById("noResult").style.display =
+        found ? "none" : "block";
+}
+
+</script>
+
+</body>
+</html>
 </div>
