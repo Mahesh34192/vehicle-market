@@ -1,1 +1,523 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background:#111827;
+    color:white;
+    padding:18px 12px;
+    text-align:center;
+}
+
+header h1{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+/* SEARCH */
+.search-box{
+    max-width:700px;
+    margin:auto;
+    display:flex;
+    gap:8px;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box button{
+    padding:14px 18px;
+    border:0;
+    border-radius:8px;
+    background:#f59e0b;
+    color:white;
+    font-weight:bold;
+}
+
+/* CONTAINER */
+.container{
+    width:94%;
+    max-width:1100px;
+    margin:20px auto;
+}
+
+/* VEHICLE GRID */
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+/* CARD */
+.vehicle-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.vehicle-card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    display:block;
+    background:#ddd;
+}
+
+.vehicle-info{
+    padding:16px;
+}
+
+.vehicle-info h2{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    color:#e11d48;
+    margin-bottom:12px;
+}
+
+.detail{
+    margin:7px 0;
+    font-size:15px;
+}
+
+.label{
+    font-weight:bold;
+}
+
+/* BUTTON */
+.contact-btn{
+    width:100%;
+    margin-top:14px;
+    padding:13px;
+    border:0;
+    border-radius:8px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* NO RESULT */
+.no-result{
+    text-align:center;
+    padding:30px;
+    font-size:18px;
+    display:none;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    header h1{
+        font-size:22px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        width:100%;
+    }
+
+    .vehicle-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vehicle-card img{
+        height:230px;
+    }
+
+    .vehicle-info h2{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🚗 Mahesh Vehicle Market</h1>
+
+<div class="search-box">
+<input
+type="text"
+id="searchInput"
+placeholder="වාහනය සොයන්න..."
+onkeyup="searchVehicles()">
+
+<button onclick="searchVehicles()">🔍 සොයන්න</button>
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="vehicle-grid" id="vehicleGrid">
+
+
+<!-- BMW -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/9/9b/BMW_3-Series_G20_IMG_0197.jpg"
+alt="BMW">
+
+<div class="vehicle-info">
+
+<h2>🚘 BMW කාර්</h2>
+
+<div class="price">
+රු. 70,340,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span> 2020
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span> කොළඹ
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+හොඳ තත්ත්වයේ BMW කාර් රථයකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Body, Interior
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- ALTO -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Suzuki_Alto_2014.jpg"
+alt="Alto">
+
+<div class="vehicle-info">
+
+<h2>🚗 Suzuki Alto</h2>
+
+<div class="price">
+රු. 8,090,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span> 2020
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span> ගම්පහ
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+පවුලේ භාවිතයට සුදුසු වාහනයකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Body, Tyres
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- JEEP -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Jeep_Wrangler_Rubicon_392.jpg"
+alt="Jeep">
+
+<div class="vehicle-info">
+
+<h2>🚙 Jeep</h2>
+
+<div class="price">
+රු. 30,750,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span> 2019
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span> මහනුවර
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+ශක්තිමත් සහ හොඳ තත්ත්වයේ Jeep රථයකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Body, Suspension
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- PULSAR -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Bajaj_Pulsar_220F.jpg"
+alt="Pulsar">
+
+<div class="vehicle-info">
+
+<h2>🏍️ Bajaj Pulsar</h2>
+
+<div class="price">
+රු. 745,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span> 2021
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span> කුරුණෑගල
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+හොඳ ධාවන තත්ත්වයේ යතුරුපැදියකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Tyres, Body
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- THREE WHEEL -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/1/13/Bajaj_RE.jpg"
+alt="Three Wheel">
+
+<div class="vehicle-info">
+
+<h2>🛺 Bajaj Three Wheel</h2>
+
+<div class="price">
+රු. 10,250,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span> 2016
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span> කොළඹ
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+දෛනික භාවිතයට සුදුසු ත්‍රීවීල් රථයකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Body, Wheels
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- TRUCK -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Isuzu_NPR.jpg"
+alt="Truck">
+
+<div class="vehicle-info">
+
+<h2>🚚 Truck</h2>
+
+<div class="price">
+රු. 80,560,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span> 2018
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span> කොළඹ
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+භාණ්ඩ ප්‍රවාහනය සඳහා සුදුසු Truck රථයකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Cabin, Wheels
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+
+</div>
+
+<div class="no-result" id="noResult">
+❌ වාහනය හමු නොවීය
+</div>
+
+</div>
+
+
+<script>
+
+function searchVehicles(){
+
+    let input =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+    let cards =
+    document.querySelectorAll(".vehicle-card");
+
+    let found = 0;
+
+    cards.forEach(function(card){
+
+        let text =
+        card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+
+            card.style.display = "block";
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    let noResult =
+    document.getElementById("noResult");
+
+    if(found === 0){
+        noResult.style.display = "block";
+    }else{
+        noResult.style.display = "none";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
