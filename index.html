@@ -1,6 +1,452 @@
 <!DOCTYPE html><!DOCTYPE html>
 <html lang="si">
+<head><!DOCTYPE html>
+<html lang="si">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+/* HEADER */
+header{
+    background:#111827;
+    color:white;
+    padding:18px 12px;
+    text-align:center;
+}
+
+header h1{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.search{
+    width:100%;
+    max-width:600px;
+    margin:auto;
+}
+
+.search input{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+/* VEHICLE GRID */
+.vehicle-container{
+    width:100%;
+    max-width:1200px;
+    margin:20px auto;
+    padding:0 12px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+}
+
+/* CARD */
+.vehicle-card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+    border:1px solid #ddd;
+}
+
+/* PHOTO */
+.vehicle-photo{
+    width:100%;
+    height:210px;
+    background:#e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.vehicle-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* PHOTO ERROR */
+.photo-error{
+    color:#555;
+    font-size:18px;
+    text-align:center;
+    padding:20px;
+}
+
+/* DETAILS */
+.vehicle-info{
+    padding:16px;
+}
+
+.vehicle-info h2{
+    font-size:22px;
+    margin-bottom:10px;
+    color:#111827;
+}
+
+.price{
+    color:#d00000;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.detail{
+    margin:7px 0;
+    font-size:16px;
+}
+
+.detail b{
+    color:#111827;
+}
+
+/* BUTTON */
+.contact-btn{
+    width:100%;
+    margin-top:14px;
+    padding:12px;
+    border:none;
+    border-radius:7px;
+    background:#16a34a;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.contact-btn:hover{
+    background:#15803d;
+}
+
+/* FOOTER */
+footer{
+    margin-top:30px;
+    padding:20px;
+    background:#111827;
+    color:white;
+    text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    header h1{
+        font-size:22px;
+    }
+
+    .vehicle-container{
+        grid-template-columns:1fr;
+        padding:10px;
+    }
+
+    .vehicle-photo{
+        height:220px;
+    }
+
+    .vehicle-info h2{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🚘 Mahesh Vehicle Market</h1>
+
+<div class="search">
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 වාහනය සොයන්න..."
+onkeyup="searchVehicles()">
+</div>
+
+</header>
+
+
+<div class="vehicle-container" id="vehicleContainer">
+
+
+<!-- BMW -->
+
+<div class="vehicle-card" data-search="BMW කාර්">
+
+<div class="vehicle-photo">
+
+<img
+src="https://images.unsplash.com/photo-1555215695-3004980ad54e"
+alt="BMW"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-error\'>📷 BMW Photo</div>'">
+
+</div>
+
+<div class="vehicle-info">
+
+<h2>🚗 BMW කාර්</h2>
+
+<div class="price">රු. 70,340,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2026</div>
+<div class="detail"><b>ස්ටොක්:</b> තිබේ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම පාට්ස්</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>විස්තර:</b> හොඳ තත්ත්වයේ BMW කාර් රථයකි.</div>
+
+<button class="contact-btn" onclick="contactVehicle('BMW කාර්')">
+📞 විමසන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- LORRY -->
+
+<div class="vehicle-card" data-search="ලොරි Lorry">
+
+<div class="vehicle-photo">
+
+<img
+src="https://images.unsplash.com/photo-1586191582151-f73872dfd183"
+alt="Lorry"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-error\'>📷 Lorry Photo</div>'">
+
+</div>
+
+<div class="vehicle-info">
+
+<h2>🚚 ලොරි</h2>
+
+<div class="price">රු. 56,800,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2026</div>
+<div class="detail"><b>ස්ටොක්:</b> තිබේ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම පාට්ස්</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>විස්තර:</b> භාණ්ඩ ප්‍රවාහනයට සුදුසු ලොරි රථයකි.</div>
+
+<button class="contact-btn" onclick="contactVehicle('ලොරි')">
+📞 විමසන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- ALTO VAN -->
+
+<div class="vehicle-card" data-search="Alto Van ඇල්ටෝ වෑන්">
+
+<div class="vehicle-photo">
+
+<img
+src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2"
+alt="Alto Van"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-error\'>📷 Alto Van Photo</div>'">
+
+</div>
+
+<div class="vehicle-info">
+
+<h2>🚐 Alto Van</h2>
+
+<div class="price">රු. 80,900,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2026</div>
+<div class="detail"><b>ස්ටොක්:</b> තිබේ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම පාට්ස්</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>විස්තර:</b> පවුලේ භාවිතයට සුදුසු වෑන් රථයකි.</div>
+
+<button class="contact-btn" onclick="contactVehicle('Alto Van')">
+📞 විමසන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- YADIA -->
+
+<div class="vehicle-card" data-search="YADIA ස්කූටර්">
+
+<div class="vehicle-photo">
+
+<img
+src="https://images.unsplash.com/photo-1558981806-ec527fa84c39"
+alt="YADIA Scooter"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-error\'>📷 YADIA Scooter Photo</div>'">
+
+</div>
+
+<div class="vehicle-info">
+
+<h2>🛵 YADIA ස්කූටර්</h2>
+
+<div class="price">රු. 60,800,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2026</div>
+<div class="detail"><b>ස්ටොක්:</b> තිබේ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම පාට්ස්</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>විස්තර:</b> නවීන ස්කූටර් රථයකි.</div>
+
+<button class="contact-btn" onclick="contactVehicle('YADIA ස්කූටර්')">
+📞 විමසන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- CAR LAMBORGHINI -->
+
+<div class="vehicle-card" data-search="Lamborghini ලැම්බෝගිනි">
+
+<div class="vehicle-photo">
+
+<img
+src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a"
+alt="Lamborghini"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-error\'>📷 Lamborghini Photo</div>'">
+
+</div>
+
+<div class="vehicle-info">
+
+<h2>🏎️ Lamborghini කාර්</h2>
+
+<div class="price">රු. 670,780,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2026</div>
+<div class="detail"><b>ස්ටොක්:</b> තිබේ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම පාට්ස්</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>විස්තර:</b> සුපිරි ක්‍රීඩා මෝටර් රථයකි.</div>
+
+<button class="contact-btn" onclick="contactVehicle('Lamborghini')">
+📞 විමසන්න
+</button>
+
+</div>
+</div>
+
+
+<!-- TRUCK -->
+
+<div class="vehicle-card" data-search="Truck ත්‍රක්">
+
+<div class="vehicle-photo">
+
+<img
+src="https://images.unsplash.com/photo-1519003722824-194d4455a60c"
+alt="Truck"
+onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'photo-error\'>📷 Truck Photo</div>'">
+
+</div>
+
+<div class="vehicle-info">
+
+<h2>🚛 Truck</h2>
+
+<div class="price">රු. 80,560,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2026</div>
+<div class="detail"><b>ස්ටොක්:</b> තිබේ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම පාට්ස්</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>විස්තර:</b> භාණ්ඩ ප්‍රවාහනයට සුදුසු Truck රථයකි.</div>
+
+<button class="contact-btn" onclick="contactVehicle('Truck')">
+📞 විමසන්න
+</button>
+
+</div>
+</div>
+
+
+</div>
+
+
+<footer>
+<p>© 2026 Mahesh Vehicle Market</p>
+<p>වාහන මිලදී ගැනීමට සහ විකිණීමට අප හා සම්බන්ධ වන්න.</p>
+</footer>
+
+
+<script>
+
+/* SEARCH */
+
+function searchVehicles(){
+
+    let input =
+    document.getElementById("searchBox")
+    .value
+    .toLowerCase();
+
+    let cards =
+    document.querySelectorAll(".vehicle-card");
+
+    cards.forEach(function(card){
+
+        let text =
+        card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+            card.style.display="block";
+        }
+        else{
+            card.style.display="none";
+        }
+
+    });
+
+}
+
+
+/* CONTACT */
+
+function contactVehicle(vehicle){
+
+    alert(
+        "ඔබ තෝරාගෙන ඇත්තේ: " +
+        vehicle +
+        "\\n\\nවාහනය පිළිබඳ වැඩි විස්තර සඳහා අප හා සම්බන්ධ වන්න."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
