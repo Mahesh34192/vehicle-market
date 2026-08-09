@@ -1,4 +1,212 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:18px 12px;
+    text-align:center;
+}
+
+header h1{
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.search{
+    width:100%;
+    max-width:500px;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.container{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    padding:20px 12px;
+}
+
+.vehicle-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+    margin-bottom:25px;
+}
+
+.vehicle-photo{
+    width:100%;
+    height:250px;
+    background:#ddd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:60px;
+}
+
+.vehicle-info{
+    padding:18px;
+}
+
+.vehicle-info h2{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#0b7a35;
+    font-size:23px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.detail{
+    padding:9px 0;
+    border-bottom:1px solid #eee;
+    font-size:17px;
+}
+
+.label{
+    font-weight:bold;
+}
+
+.parts{
+    margin-top:15px;
+}
+
+.parts span{
+    display:inline-block;
+    background:#e8eef5;
+    padding:8px 10px;
+    margin:4px;
+    border-radius:6px;
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:21px;
+    }
+
+    .vehicle-photo{
+        height:210px;
+    }
+
+    .vehicle-info h2{
+        font-size:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚘 Mahesh Vehicle Market</h1>
+
+    <input
+        class="search"
+        type="text"
+        id="searchBox"
+        placeholder="වාහනය සොයන්න..."
+        onkeyup="searchVehicle()"
+    >
+</header>
+
+<div class="container">
+
+    <div class="vehicle-card" id="rosaBus">
+
+        <div class="vehicle-photo">
+            🚌
+        </div>
+
+        <div class="vehicle-info">
+
+            <h2>බස් – Mitsubishi Rosa</h2>
+
+            <div class="price">
+                රු. 70,890,000
+            </div>
+
+            <div class="detail">
+                <span class="label">වර්ෂය:</span>
+                2018
+            </div>
+
+            <div class="detail">
+                <span class="label">නගරය:</span>
+                කොළඹ
+            </div>
+
+            <div class="detail">
+                <span class="label">ස්ටෝක්:</span>
+                තිබේ
+            </div>
+
+            <div class="detail">
+                <span class="label">වාහන වර්ගය:</span>
+                බස්
+            </div>
+
+            <div class="parts">
+                <strong>🔧 පාට්ස් වර්ග:</strong><br>
+
+                <span>එන්ජින්</span>
+                <span>ගියර්බොක්ස්</span>
+                <span>බ්‍රේක්</span>
+                <span>සස්පෙන්ෂන්</span>
+                <span>බොඩි පාට්ස්</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function searchVehicle(){
+
+    let search =
+        document.getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+    let vehicle =
+        document.getElementById("rosaBus");
+
+    let text =
+        vehicle.innerText.toLowerCase();
+
+    if(text.includes(search)){
+        vehicle.style.display = "block";
+    }else{
+        vehicle.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
 <html lang="si">
 <head><!DOCTYPE html><!-- Leyland Bus -->
 <div class="vehicle-card"
