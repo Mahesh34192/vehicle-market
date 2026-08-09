@@ -1317,7 +1317,544 @@ function showDetails(vehicle){
 
 }
 
+</script><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Sinhala",sans-serif;
+  background:#f1f4f8;
+  color:#222;
+}
+
+header{
+  background:linear-gradient(135deg,#063b83,#1261bd);
+  color:white;
+  padding:22px 15px;
+  text-align:center;
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+}
+
+header p{
+  margin:8px 0 0;
+  font-size:18px;
+}
+
+.search-area{
+  background:white;
+  padding:15px;
+  display:flex;
+  gap:12px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.search-area input{
+  flex:1;
+  min-width:0;
+  height:58px;
+  border:2px solid #ddd;
+  border-radius:18px;
+  padding:0 20px;
+  font-size:20px;
+  outline:none;
+}
+
+.search-area button{
+  width:95px;
+  border:0;
+  border-radius:18px;
+  background:#0758ad;
+  color:white;
+  font-size:28px;
+}
+
+.categories{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding:15px;
+  background:#fff;
+}
+
+.categories button{
+  flex-shrink:0;
+  padding:13px 25px;
+  border-radius:30px;
+  border:2px solid #1261bd;
+  background:white;
+  color:#0758ad;
+  font-size:18px;
+}
+
+.categories button.active{
+  background:#0758ad;
+  color:white;
+}
+
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:20px 15px 50px;
+}
+
+.title{
+  font-size:32px;
+  margin:10px 0 25px;
+}
+
+.vehicle-card{
+  background:white;
+  border-radius:25px;
+  overflow:hidden;
+  margin-bottom:30px;
+  box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+.vehicle-photo{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  display:block;
+  background:#ddd;
+}
+
+.vehicle-info{
+  padding:25px;
+}
+
+.vehicle-info h2{
+  font-size:32px;
+  margin:0 0 10px;
+}
+
+.price{
+  color:#0758ad;
+  font-size:30px;
+  font-weight:bold;
+  margin:8px 0 18px;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.tag{
+  background:#eef2f7;
+  padding:12px 16px;
+  border-radius:15px;
+  font-size:17px;
+}
+
+.description{
+  font-size:20px;
+  line-height:1.6;
+  margin:22px 0;
+}
+
+.parts-title{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.parts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.part{
+  background:#eef2f7;
+  padding:12px 15px;
+  border-radius:14px;
+  font-size:16px;
+}
+
+.contact-btn{
+  width:100%;
+  margin-top:25px;
+  padding:17px;
+  border:0;
+  border-radius:17px;
+  background:#0758ad;
+  color:white;
+  font-size:23px;
+  font-weight:bold;
+}
+
+.no-result{
+  display:none;
+  text-align:center;
+  font-size:22px;
+  padding:40px;
+}
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:27px;
+  }
+
+  header p{
+    font-size:17px;
+  }
+
+  .vehicle-photo{
+    height:260px;
+  }
+
+  .vehicle-info h2{
+    font-size:29px;
+  }
+
+  .price{
+    font-size:27px;
+  }
+
+  .description{
+    font-size:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚘 Mahesh Vehicle Market</h1>
+  <p>ඔබේ කැමති වාහනය පහසුවෙන් සොයාගන්න</p>
+</header>
+
+<div class="search-area">
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="වාහනයක් සොයන්න..."
+    oninput="searchVehicles()"
+  >
+  <button onclick="searchVehicles()">🔍</button>
+</div>
+
+<div class="categories">
+  <button class="active" onclick="filterVehicles('all',this)">සියල්ල</button>
+  <button onclick="filterVehicles('car',this)">🚗 කාර්</button>
+  <button onclick="filterVehicles('jeep',this)">🚙 ජීප්</button>
+  <button onclick="filterVehicles('bike',this)">🏍️ බයික්</button>
+  <button onclick="filterVehicles('three',this)">🛺 ත්‍රීවිල්</button>
+</div>
+
+<div class="container">
+
+<h2 class="title">🚘 අපගේ වාහන</h2>
+
+<!-- BMW -->
+<div class="vehicle-card vehicle"
+     data-type="car"
+     data-name="BMW">
+
+  <img
+    class="vehicle-photo"
+    src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200"
+    alt="BMW"
+    onerror="this.onerror=null;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/BMW%203%20Series.jpg';"
+  >
+
+  <div class="vehicle-info">
+
+    <h2>BMW</h2>
+
+    <div class="price">රු. 50,670,000</div>
+
+    <div class="tags">
+      <span class="tag">🚗 වර්ගය: Car</span>
+      <span class="tag">📅 වර්ෂය: 2020</span>
+      <span class="tag">📍 නගරය: මහනුවර</span>
+    </div>
+
+    <p class="description">
+      හොඳ තත්ත්වයේ BMW කාර් රථයකි.
+      නවීන පහසුකම් සහිතව පාරිභෝගිකයන් සඳහා ලබාගත හැක.
+    </p>
+
+    <div class="parts-title">🔧 Parts වර්ග</div>
+
+    <div class="parts">
+      <span class="part">🔧 Engine Parts</span>
+      <span class="part">⚙️ Gearbox Parts</span>
+      <span class="part">🛞 Wheel Parts</span>
+      <span class="part">🛑 Brake Parts</span>
+      <span class="part">💡 Light Parts</span>
+      <span class="part">🔋 Battery</span>
+      <span class="part">🚘 Body Parts</span>
+      <span class="part">💺 Interior Parts</span>
+    </div>
+
+    <button class="contact-btn" onclick="contactSeller('BMW')">
+      වැඩි විස්තර
+    </button>
+
+  </div>
+</div>
+
+
+<!-- PULSAR -->
+<div class="vehicle-card vehicle"
+     data-type="bike"
+     data-name="Pulsar Bike">
+
+  <img
+    class="vehicle-photo"
+    src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1200"
+    alt="Pulsar Bike"
+    onerror="this.onerror=null;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Motorcycle.jpg';"
+  >
+
+  <div class="vehicle-info">
+
+    <h2>🏍️ Pulsar Bike</h2>
+
+    <div class="price">රු. 745,000</div>
+
+    <div class="tags">
+      <span class="tag">🏍️ වර්ගය: Bike</span>
+      <span class="tag">📅 වර්ෂය: 2020</span>
+      <span class="tag">📍 නගරය: මහනුවර</span>
+    </div>
+
+    <p class="description">
+      හොඳ තත්ත්වයේ Pulsar Bike එකකි.
+      දිනපතා භාවිතයට සුදුසුයි.
+    </p>
+
+    <div class="parts-title">🔧 Parts වර්ග</div>
+
+    <div class="parts">
+      <span class="part">🔧 Engine Parts</span>
+      <span class="part">⚙️ Gearbox Parts</span>
+      <span class="part">🛞 Wheel Parts</span>
+      <span class="part">🛑 Brake Parts</span>
+      <span class="part">💡 Light Parts</span>
+      <span class="part">🔋 Battery</span>
+      <span class="part">🏍️ Body Parts</span>
+    </div>
+
+    <button class="contact-btn" onclick="contactSeller('Pulsar Bike')">
+      වැඩි විස්තර
+    </button>
+
+  </div>
+</div>
+
+
+<!-- JEEP -->
+<div class="vehicle-card vehicle"
+     data-type="jeep"
+     data-name="Jeep">
+
+  <img
+    class="vehicle-photo"
+    src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200"
+    alt="Jeep"
+    onerror="this.onerror=null;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Jeep.jpg';"
+  >
+
+  <div class="vehicle-info">
+
+    <h2>🚙 Jeep</h2>
+
+    <div class="price">රු. 30,750,000</div>
+
+    <div class="tags">
+      <span class="tag">📅 වර්ෂය: 2018</span>
+      <span class="tag">🚙 ජීප්</span>
+      <span class="tag">⚙️ Automatic</span>
+    </div>
+
+    <p class="description">
+      හොඳ තත්ත්වයේ Jeep රථයකි.
+      වාහනයේ විස්තර සහ අවශ්‍ය Parts තොරතුරු ලබාගත හැක.
+    </p>
+
+    <div class="parts-title">🔧 Parts වර්ග</div>
+
+    <div class="parts">
+      <span class="part">🔧 Engine Parts</span>
+      <span class="part">⚙️ Gearbox Parts</span>
+      <span class="part">🛞 Wheel Parts</span>
+      <span class="part">🛑 Brake Parts</span>
+      <span class="part">💡 Light Parts</span>
+      <span class="part">🔋 Battery</span>
+      <span class="part">🚙 Body Parts</span>
+    </div>
+
+    <button class="contact-btn" onclick="contactSeller('Jeep')">
+      වැඩි විස්තර
+    </button>
+
+  </div>
+</div>
+
+
+<!-- THREE WHEEL -->
+<div class="vehicle-card vehicle"
+     data-type="three"
+     data-name="Bajaj Three Wheel">
+
+  <img
+    class="vehicle-photo"
+    src="https://images.unsplash.com/photo-1592840062661-0a9b8c8a5a5c?w=1200"
+    alt="Bajaj Three Wheel"
+    onerror="this.onerror=null;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Auto%20rickshaw.jpg';"
+  >
+
+  <div class="vehicle-info">
+
+    <h2>🛺 Bajaj Three Wheel</h2>
+
+    <div class="price">රු. 10,250,000</div>
+
+    <div class="tags">
+      <span class="tag">🛺 වර්ගය: Three Wheel</span>
+      <span class="tag">📅 වර්ෂය: 2016</span>
+      <span class="tag">📍 නගරය: මහනුවර</span>
+    </div>
+
+    <p class="description">
+      2016 Bajaj Three Wheel රථයකි.
+      හොඳ තත්ත්වයෙන් භාවිතයට සුදුසුයි.
+    </p>
+
+    <div class="parts-title">🔧 Parts වර්ග</div>
+
+    <div class="parts">
+      <span class="part">🔧 Engine Parts</span>
+      <span class="part">⚙️ Gearbox Parts</span>
+      <span class="part">🛞 Wheel Parts</span>
+      <span class="part">🛑 Brake Parts</span>
+      <span class="part">💡 Light Parts</span>
+      <span class="part">🔋 Battery</span>
+    </div>
+
+    <button class="contact-btn" onclick="contactSeller('Bajaj Three Wheel')">
+      වැඩි විස්තර
+    </button>
+
+  </div>
+</div>
+
+<div id="noResult" class="no-result">
+  😔 වාහනයක් හමු වුණේ නැහැ.
+</div>
+
+</div>
+
+
+<script>
+
+function searchVehicles(){
+
+  const search =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const vehicles =
+    document.querySelectorAll(".vehicle");
+
+  let found = 0;
+
+  vehicles.forEach(function(vehicle){
+
+    const name =
+      vehicle.dataset.name.toLowerCase();
+
+    const text =
+      vehicle.innerText.toLowerCase();
+
+    if(name.includes(search) || text.includes(search)){
+
+      vehicle.style.display = "block";
+      found++;
+
+    }else{
+
+      vehicle.style.display = "none";
+
+    }
+
+  });
+
+  document.getElementById("noResult").style.display =
+    found === 0 ? "block" : "none";
+}
+
+
+function filterVehicles(type,button){
+
+  document.querySelectorAll(".categories button")
+    .forEach(function(btn){
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  const vehicles =
+    document.querySelectorAll(".vehicle");
+
+  let found = 0;
+
+  vehicles.forEach(function(vehicle){
+
+    if(type === "all" || vehicle.dataset.type === type){
+
+      vehicle.style.display = "block";
+      found++;
+
+    }else{
+
+      vehicle.style.display = "none";
+
+    }
+
+  });
+
+  document.getElementById("noResult").style.display =
+    found === 0 ? "block" : "none";
+}
+
+
+function contactSeller(vehicle){
+
+  alert(
+    vehicle +
+    " ගැන වැඩි විස්තර ලබාගැනීමට අපව සම්බන්ධ කරගන්න."
+  );
+
+}
+
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
