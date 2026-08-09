@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:18px 12px;
+    text-align:center;
+}
+
+header h1{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.search{
+    width:100%;
+    max-width:600px;
+    margin:auto;
+}
+
+.search input{
+    width:100%;
+    padding:14px 16px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    padding:18px 12px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:18px;
+    font-size:22px;
+}
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,0.12);
+}
+
+.vehicle-photo{
+    width:100%;
+    height:220px;
+    background:#dfe3e8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.vehicle-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.no-photo{
+    font-size:22px;
+    font-weight:bold;
+    color:#555;
+    text-align:center;
+    padding:20px;
+}
+
+.info{
+    padding:16px;
+}
+
+.info h2{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    color:#d62828;
+    margin-bottom:12px;
+}
+
+.detail{
+    padding:7px 0;
+    border-bottom:1px solid #eee;
+    font-size:15px;
+}
+
+.detail b{
+    color:#111827;
+}
+
+.description{
+    margin-top:12px;
+    line-height:1.5;
+    color:#555;
+}
+
+.stock{
+    display:inline-block;
+    margin-top:12px;
+    background:#16a34a;
+    color:white;
+    padding:7px 12px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.contact{
+    display:block;
+    width:100%;
+    margin-top:14px;
+    padding:12px;
+    border:none;
+    border-radius:9px;
+    background:#111827;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+    font-size:16px;
+}
+
+.no-result{
+    display:none;
+    text-align:center;
+    padding:30px;
+    font-size:18px;
+    color:#666;
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:15px 10px;
+    }
+
+    header h1{
+        font-size:22px;
+    }
+
+    .container{
+        padding:14px 10px;
+    }
+
+    .vehicle-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vehicle-photo{
+        height:220px;
+    }
+
+    .info h2{
+        font-size:21px;
+    }
+
+    .price{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🚗 Mahesh Vehicle Market</h1>
+
+<div class="search">
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 වාහනය සොයන්න..."
+onkeyup="searchVehicles()">
+</div>
+
+</header>
+
+<main class="container">
+
+<h2 class="title">🚘 අපගේ වාහන</h2>
+
+<div class="vehicle-grid" id="vehicleGrid">
+
+
+<!-- BMW -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/5/50/2018_BMW_5_Series_M_Sport_Automatic_2.0_Front.jpg"
+alt="BMW"
+onerror="showNoPhoto(this,'🚗 BMW')">
+</div>
+
+<div class="info">
+
+<h2>BMW කාර්</h2>
+
+<div class="price">රු. 70,340,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2020</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> සියලුම අමතර කොටස්</div>
+
+<div class="description">
+හොඳ තත්ත්වයේ BMW කාර් රථයකි.
+දෛනික භාවිතයට සුදුසුයි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- LAMBORGHINI -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/9/93/Lamborghini_Huracan_Evo_Spyder.jpg"
+alt="Lamborghini"
+onerror="showNoPhoto(this,'🚗 Lamborghini')">
+</div>
+
+<div class="info">
+
+<h2>Lamborghini කාර්</h2>
+
+<div class="price">රු. 670,780,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2021</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Original Parts</div>
+
+<div class="description">
+සුඛෝපභෝගී ක්‍රීඩා කාර් රථයකි.
+විශිෂ්ට පෙනුම සහ කාර්යසාධනය.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- JEEP -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚙 JEEP</div>
+</div>
+
+<div class="info">
+
+<h2>Jeep</h2>
+
+<div class="price">රු. 30,750,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2020</div>
+<div class="detail"><b>නගරය:</b> මහනුවර</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Jeep Parts</div>
+
+<div class="description">
+ශක්තිමත් සහ සුවපහසු Jeep රථයකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- ALTO VAN -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚐 ALTO VAN</div>
+</div>
+
+<div class="info">
+
+<h2>Alto Van</h2>
+
+<div class="price">රු. 80,900,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2020</div>
+<div class="detail"><b>නගරය:</b> ගම්පහ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Van Parts</div>
+
+<div class="description">
+භාණ්ඩ ප්‍රවාහනය සහ ව්‍යාපාරික කටයුතු සඳහා සුදුසුයි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- PULSAR -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🏍️ PULSAR</div>
+</div>
+
+<div class="info">
+
+<h2>Pulsar බයික්</h2>
+
+<div class="price">රු. 745,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2022</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Bike Parts</div>
+
+<div class="description">
+හොඳ ධාවන තත්ත්වයේ Pulsar බයික් එකකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- YADIA -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🛵 YADIA</div>
+</div>
+
+<div class="info">
+
+<h2>YADIA Scooter</h2>
+
+<div class="price">රු. 60,800,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2023</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Scooter Parts</div>
+
+<div class="description">
+නවීන Scooter එකකි.
+දෛනික ගමනාගමනයට සුදුසුයි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- LEYLAND -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚌 LEYLAND</div>
+</div>
+
+<div class="info">
+
+<h2>Leyland බස්</h2>
+
+<div class="price">රු. 900,780,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2019</div>
+<div class="detail"><b>නගරය:</b> කුරුණෑගල</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Bus Parts</div>
+
+<div class="description">
+මගී ප්‍රවාහනය සඳහා සුදුසු Leyland බස් රථයකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- ROSA -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚌 ROSA</div>
+</div>
+
+<div class="info">
+
+<h2>Rosa බස්</h2>
+
+<div class="price">රු. 89,000,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2020</div>
+<div class="detail"><b>නගරය:</b> මහනුවර</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Rosa Parts</div>
+
+<div class="description">
+මගී ප්‍රවාහනය සඳහා සුදුසුයි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- TRUCK -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚚 TRUCK</div>
+</div>
+
+<div class="info">
+
+<h2>Truck</h2>
+
+<div class="price">රු. 80,560,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2020</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Truck Parts</div>
+
+<div class="description">
+භාණ්ඩ ප්‍රවාහනය සඳහා ශක්තිමත් Truck රථයකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- LORRY -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚛 LORRY</div>
+</div>
+
+<div class="info">
+
+<h2>Lorry</h2>
+
+<div class="price">රු. 70,340,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2021</div>
+<div class="detail"><b>නගරය:</b> ගම්පහ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Lorry Parts</div>
+
+<div class="description">
+භාණ්ඩ ප්‍රවාහනය සඳහා සුදුසු ලොරි රථයකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- WAGON R -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚗 WAGON R</div>
+</div>
+
+<div class="info">
+
+<h2>Wagon R</h2>
+
+<div class="price">රු. 8,900,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2021</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Wagon R Parts</div>
+
+<div class="description">
+පවුලේ දෛනික භාවිතයට සුදුසු කුඩා මෝටර් රථයකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- DOLPHIN -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚐 DOLPHIN</div>
+</div>
+
+<div class="info">
+
+<h2>Dolphin Van</h2>
+
+<div class="price">රු. 7,800,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2020</div>
+<div class="detail"><b>නගරය:</b> මහනුවර</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Van Parts</div>
+
+<div class="description">
+පවුලේ ගමන් බිමන් සහ ව්‍යාපාරික භාවිතයට සුදුසුයි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+<!-- BOWSER -->
+<div class="card vehicle">
+
+<div class="vehicle-photo">
+<div class="no-photo">🚛 BOWSER</div>
+</div>
+
+<div class="info">
+
+<h2>Bowser</h2>
+
+<div class="price">රු. 89,000,000</div>
+
+<div class="detail"><b>වර්ෂය:</b> 2019</div>
+<div class="detail"><b>නගරය:</b> කොළඹ</div>
+<div class="detail"><b>පාට්ස් වර්ග:</b> Bowser Parts</div>
+
+<div class="description">
+විශේෂ භාණ්ඩ ප්‍රවාහන කටයුතු සඳහා සුදුසු වාහනයකි.
+</div>
+
+<span class="stock">Stock ඇත</span>
+
+<a class="contact" href="javascript:void(0)">
+විස්තර විමසන්න
+</a>
+
+</div>
+</div>
+
+
+</div>
+
+<div class="no-result" id="noResult">
+වාහනය හමු වුණේ නැහැ 🔍
+</div>
+
+</main>
+
+
+<script>
+
+function showNoPhoto(img, name){
+
+    img.style.display = "none";
+
+    img.parentElement.innerHTML =
+    '<div class="no-photo">' + name + '</div>';
+
+}
+
+function searchVehicles(){
+
+    let input =
+    document.getElementById("searchBox")
+    .value
+    .toLowerCase();
+
+    let vehicles =
+    document.querySelectorAll(".vehicle");
+
+    let found = 0;
+
+    vehicles.forEach(function(vehicle){
+
+        let text =
+        vehicle.innerText.toLowerCase();
+
+        if(text.includes(input)){
+
+            vehicle.style.display = "";
+
+            found++;
+
+        }else{
+
+            vehicle.style.display = "none";
+
+        }
+
+    });
+
+    document.getElementById("noResult").style.display =
+    found === 0 ? "block" : "none";
+}
+
+</script>
+
+</body>
+</html>
