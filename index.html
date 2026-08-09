@@ -1,4 +1,290 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:18px 12px;
+    text-align:center;
+}
+
+header h1{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.search-box{
+    max-width:700px;
+    margin:auto;
+    display:flex;
+    gap:8px;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box button{
+    padding:14px 20px;
+    border:0;
+    border-radius:8px;
+    background:#f59e0b;
+    color:white;
+    font-weight:bold;
+}
+
+.container{
+    width:94%;
+    max-width:1100px;
+    margin:20px auto;
+}
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.vehicle-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.vehicle-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+    background:#ddd;
+}
+
+.vehicle-info{
+    padding:16px;
+}
+
+.vehicle-info h2{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:23px;
+    font-weight:bold;
+    color:#e11d48;
+    margin-bottom:14px;
+}
+
+.detail{
+    margin:8px 0;
+    font-size:16px;
+}
+
+.label{
+    font-weight:bold;
+}
+
+.contact-btn{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.no-result{
+    text-align:center;
+    padding:30px;
+    font-size:18px;
+    display:none;
+}
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:22px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-box button{
+        width:100%;
+    }
+
+    .vehicle-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vehicle-card img{
+        height:230px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🚚 Mahesh Vehicle Market</h1>
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="වාහනය / නගරය / වර්ෂය සොයන්න..."
+onkeyup="searchVehicles()">
+
+<button onclick="searchVehicles()">
+🔍 සොයන්න
+</button>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="vehicle-grid" id="vehicleGrid">
+
+<!-- LORRY -->
+<div class="vehicle-card">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Isuzu_NPR.jpg"
+alt="Lorry">
+
+<div class="vehicle-info">
+
+<h2>🚚 ලොරි</h2>
+
+<div class="price">
+රු. 56,800,000
+</div>
+
+<div class="detail">
+<span class="label">වර්ෂය:</span>
+2018
+</div>
+
+<div class="detail">
+<span class="label">නගරය:</span>
+කොළඹ
+</div>
+
+<div class="detail">
+<span class="label">විස්තර:</span>
+භාණ්ඩ ප්‍රවාහනය සඳහා සුදුසු හොඳ තත්ත්වයේ ලොරි රථයකි.
+</div>
+
+<div class="detail">
+<span class="label">Parts වර්ග:</span>
+Engine, Cabin, Wheels, Body
+</div>
+
+<div class="detail">
+<span class="label">Stock:</span>
+තිබේ
+</div>
+
+<button class="contact-btn">
+📞 විස්තර සඳහා අමතන්න
+</button>
+
+</div>
+</div>
+
+</div>
+
+<div class="no-result" id="noResult">
+❌ වාහනය හමු නොවීය
+</div>
+
+</div>
+
+<script>
+
+function searchVehicles(){
+
+    let input =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+    let cards =
+    document.querySelectorAll(".vehicle-card");
+
+    let found = 0;
+
+    cards.forEach(function(card){
+
+        let text =
+        card.innerText.toLowerCase();
+
+        if(text.includes(input)){
+
+            card.style.display = "block";
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    let noResult =
+    document.getElementById("noResult");
+
+    if(found === 0){
+
+        noResult.style.display = "block";
+
+    }else{
+
+        noResult.style.display = "none";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
 <html lang="si">
 <head>
 <meta charset="UTF-8">
