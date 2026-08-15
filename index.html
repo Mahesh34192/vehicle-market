@@ -1773,4 +1773,384 @@ vehicle.style.display="none";
 
 
 </body>
+</html><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:28px;
+}
+
+header p{
+    margin-top:8px;
+    color:#d1d5db;
+}
+
+.search{
+    padding:20px;
+    text-align:center;
+}
+
+.search input{
+    width:90%;
+    max-width:600px;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.categories{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:10px 15px 20px;
+}
+
+.categories button{
+    border:none;
+    padding:11px 18px;
+    border-radius:20px;
+    background:#e5e7eb;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.categories button:hover{
+    background:#111827;
+    color:white;
+}
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    padding:20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.vehicle-card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.vehicle-card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    display:block;
+}
+
+.vehicle-info{
+    padding:18px;
+}
+
+.vehicle-info h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#0b7a3b;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.detail{
+    margin:7px 0;
+    font-size:15px;
+}
+
+.details-btn{
+    width:100%;
+    margin-top:12px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#111827;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.details-btn:hover{
+    background:#2563eb;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    margin-top:30px;
+    background:#111827;
+    color:white;
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:23px;
+    }
+
+    .vehicle-grid{
+        padding:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚘 Mahesh Vehicle Market</h1>
+    <p>ශ්‍රී ලංකාවේ වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</header>
+
+<div class="search">
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="🔍 වාහනයක් සොයන්න..."
+        onkeyup="searchVehicles()">
+</div>
+
+<div class="categories">
+    <button onclick="filterVehicles('all')">සියල්ල</button>
+    <button onclick="filterVehicles('car')">🚗 Cars</button>
+    <button onclick="filterVehicles('van')">🚐 Vans</button>
+    <button onclick="filterVehicles('bike')">🏍️ Bikes</button>
+    <button onclick="filterVehicles('three')">🛺 Three Wheel</button>
+    <button onclick="filterVehicles('bus')">🚌 Bus</button>
+    <button onclick="filterVehicles('truck')">🚚 Trucks</button>
+</div>
+
+<div class="vehicle-grid" id="vehicleGrid">
+
+<!-- VEHICLE 1 -->
+<div class="vehicle-card" data-category="car" data-name="Toyota">
+    <img src="https://images.unsplash.com/photo-1623869675781-80aa31012a5a?auto=format&fit=crop&w=900&q=80">
+
+    <div class="vehicle-info">
+        <h2>🚗 Toyota Car</h2>
+
+        <div class="price">රු. 12,500,000</div>
+
+        <div class="detail">📅 වර්ෂය: 2020</div>
+        <div class="detail">📍 නගරය: මහනුවර</div>
+        <div class="detail">📦 Stock: 05</div>
+        <div class="detail">🔧 Parts: Engine / Body / Interior</div>
+        <div class="detail">📝 විස්තර: හොඳ තත්ත්වයේ වාහනයකි.</div>
+
+        <button class="details-btn" onclick="showDetails('Toyota Car')">
+            වැඩි විස්තර
+        </button>
+    </div>
+</div>
+
+
+<!-- VEHICLE 2 -->
+<div class="vehicle-card" data-category="van" data-name="Suzuki Van">
+    <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=900&q=80">
+
+    <div class="vehicle-info">
+        <h2>🚐 Suzuki Van</h2>
+
+        <div class="price">රු. 50,456,000</div>
+
+        <div class="detail">📅 වර්ෂය: 2021</div>
+        <div class="detail">📍 නගරය: කොළඹ</div>
+        <div class="detail">📦 Stock: 03</div>
+        <div class="detail">🔧 Parts: Engine / Tyres / Body</div>
+        <div class="detail">📝 විස්තර: පවුලේ සහ ව්‍යාපාරික භාවිතයට සුදුසුයි.</div>
+
+        <button class="details-btn" onclick="showDetails('Suzuki Van')">
+            වැඩි විස්තර
+        </button>
+    </div>
+</div>
+
+
+<!-- VEHICLE 3 -->
+<div class="vehicle-card" data-category="bike" data-name="Honda Bike">
+    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80">
+
+    <div class="vehicle-info">
+        <h2>🏍️ Honda Bike</h2>
+
+        <div class="price">රු. 2,750,000</div>
+
+        <div class="detail">📅 වර්ෂය: 2022</div>
+        <div class="detail">📍 නගරය: ගම්පහ</div>
+        <div class="detail">📦 Stock: 08</div>
+        <div class="detail">🔧 Parts: Engine / Wheels / Body</div>
+        <div class="detail">📝 විස්තර: අලුත් තත්ත්වයට ආසන්නයි.</div>
+
+        <button class="details-btn" onclick="showDetails('Honda Bike')">
+            වැඩි විස්තර
+        </button>
+    </div>
+</div>
+
+
+<!-- VEHICLE 4 -->
+<div class="vehicle-card" data-category="three" data-name="Bajaj Three Wheel">
+    <img src="https://images.unsplash.com/photo-1592840062661-9b7b0b4f5d8d?auto=format&fit=crop&w=900&q=80">
+
+    <div class="vehicle-info">
+        <h2>🛺 Bajaj Three Wheel</h2>
+
+        <div class="price">රු. 3,250,000</div>
+
+        <div class="detail">📅 වර්ෂය: 2021</div>
+        <div class="detail">📍 නගරය: කුරුණෑගල</div>
+        <div class="detail">📦 Stock: 06</div>
+        <div class="detail">🔧 Parts: Engine / Body / Wheels</div>
+        <div class="detail">📝 විස්තර: හොඳ ධාවන තත්ත්වයේ ඇත.</div>
+
+        <button class="details-btn" onclick="showDetails('Bajaj Three Wheel')">
+            වැඩි විස්තර
+        </button>
+    </div>
+</div>
+
+
+<!-- VEHICLE 5 -->
+<div class="vehicle-card" data-category="bus" data-name="Leyland Bus">
+    <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=900&q=80">
+
+    <div class="vehicle-info">
+        <h2>🚌 Leyland Bus</h2>
+
+        <div class="price">රු. 56,890,000</div>
+
+        <div class="detail">📅 වර්ෂය: 2019</div>
+        <div class="detail">📍 නගරය: කොළඹ</div>
+        <div class="detail">📦 Stock: 02</div>
+        <div class="detail">🔧 Parts: Engine / Seats / Body</div>
+        <div class="detail">📝 විස්තර: මගී ප්‍රවාහනය සඳහා සුදුසුයි.</div>
+
+        <button class="details-btn" onclick="showDetails('Leyland Bus')">
+            වැඩි විස්තර
+        </button>
+    </div>
+</div>
+
+
+<!-- VEHICLE 6 -->
+<div class="vehicle-card" data-category="truck" data-name="Nissan Truck">
+    <img src="https://images.unsplash.com/photo-1586191582119-6a6b5d3e9e9f?auto=format&fit=crop&w=900&q=80">
+
+    <div class="vehicle-info">
+        <h2>🚚 Nissan Truck</h2>
+
+        <div class="price">රු. 70,780,000</div>
+
+        <div class="detail">📅 වර්ෂය: 2020</div>
+        <div class="detail">📍 නගරය: මහනුවර</div>
+        <div class="detail">📦 Stock: 04</div>
+        <div class="detail">🔧 Parts: Engine / Cabin / Wheels</div>
+        <div class="detail">📝 විස්තර: ව්‍යාපාරික ප්‍රවාහන කටයුතු සඳහා සුදුසුයි.</div>
+
+        <button class="details-btn" onclick="showDetails('Nissan Truck')">
+            වැඩි විස්තර
+        </button>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    © 2026 Mahesh Vehicle Market
+</footer>
+
+
+<script>
+
+function searchVehicles(){
+
+    let search =
+        document.getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+    let vehicles =
+        document.querySelectorAll(".vehicle-card");
+
+    vehicles.forEach(function(vehicle){
+
+        let name =
+            vehicle.getAttribute("data-name")
+            .toLowerCase();
+
+        if(name.includes(search)){
+            vehicle.style.display = "block";
+        }else{
+            vehicle.style.display = "none";
+        }
+
+    });
+}
+
+
+function filterVehicles(category){
+
+    let vehicles =
+        document.querySelectorAll(".vehicle-card");
+
+    vehicles.forEach(function(vehicle){
+
+        if(category === "all" ||
+           vehicle.getAttribute("data-category") === category){
+
+            vehicle.style.display = "block";
+
+        }else{
+
+            vehicle.style.display = "none";
+
+        }
+
+    });
+}
+
+
+function showDetails(vehicleName){
+
+    alert(
+        "🚘 " + vehicleName +
+        "\n\nවැඩි විස්තර සඳහා අපව සම්බන්ධ කරගන්න."
+    );
+
+}
+
+</script>
+
+</body>
 </html>
