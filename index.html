@@ -1036,4 +1036,741 @@ alert(
 </script>
 
 </body>
+</html><!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahesh Vehicle Market</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#111827;
+}
+
+/* HEADER */
+
+header{
+    background:#111827;
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+
+header h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+header p{
+    color:#cbd5e1;
+}
+
+/* SEARCH */
+
+.search{
+    background:white;
+    padding:18px;
+    text-align:center;
+}
+
+.search input{
+    width:95%;
+    max-width:600px;
+    padding:14px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    font-size:16px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:15px;
+    background:white;
+}
+
+.categories button{
+    border:none;
+    padding:11px 18px;
+    border-radius:25px;
+    background:#e5e7eb;
+    cursor:pointer;
+    white-space:nowrap;
+    font-size:15px;
+}
+
+.categories button:hover{
+    background:#111827;
+    color:white;
+}
+
+/* ADD VEHICLE */
+
+.add-box{
+    max-width:1000px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.add-box h2{
+    margin-bottom:15px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.form-grid textarea{
+    min-height:100px;
+}
+
+.add-btn{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:0;
+    border-radius:9px;
+    background:#16a34a;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+/* VEHICLES */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px 15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.info{
+    padding:18px;
+}
+
+.info h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#dc2626;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.details{
+    line-height:1.8;
+    color:#374151;
+}
+
+.details span{
+    font-weight:bold;
+    color:#111827;
+}
+
+.description{
+    margin-top:12px;
+    line-height:1.6;
+    color:#4b5563;
+}
+
+.contact-btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    background:#16a34a;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:30px;
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<header>
+
+<h1>🚘 Mahesh Vehicle Market</h1>
+
+<p>වාහන මිලදී ගැනීම සහ විකිණීම</p>
+
+</header>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 වාහනයක් සොයන්න..."
+onkeyup="searchVehicles()"
+>
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+<button onclick="filterVehicles('all')">
+සියලුම වාහන
+</button>
+
+<button onclick="filterVehicles('car')">
+🚗 Cars
+</button>
+
+<button onclick="filterVehicles('jeep')">
+🚙 Jeeps
+</button>
+
+<button onclick="filterVehicles('van')">
+🚐 Vans
+</button>
+
+<button onclick="filterVehicles('bike')">
+🏍️ Bikes
+</button>
+
+<button onclick="filterVehicles('three')">
+🛺 Three Wheel
+</button>
+
+<button onclick="filterVehicles('truck')">
+🚛 Trucks
+</button>
+
+<button onclick="filterVehicles('bus')">
+🚌 Bus
+</button>
+
+</div>
+
+
+<!-- ADD VEHICLE -->
+
+<div class="add-box">
+
+<h2>➕ අලුත් වාහනයක් එකතු කරන්න</h2>
+
+<div class="form-grid">
+
+<input
+id="vName"
+placeholder="වාහන නම"
+>
+
+<input
+id="vPrice"
+placeholder="මිල"
+>
+
+<input
+id="vYear"
+placeholder="වර්ෂය"
+>
+
+<input
+id="vCity"
+placeholder="නගරය"
+>
+
+<input
+id="vStock"
+placeholder="Stock"
+>
+
+<input
+id="vParts"
+placeholder="Parts වර්ග"
+>
+
+<select id="vCategory">
+
+<option value="car">
+🚗 Car
+</option>
+
+<option value="jeep">
+🚙 Jeep
+</option>
+
+<option value="van">
+🚐 Van
+</option>
+
+<option value="bike">
+🏍️ Bike
+</option>
+
+<option value="three">
+🛺 Three Wheel
+</option>
+
+<option value="truck">
+🚛 Truck
+</option>
+
+<option value="bus">
+🚌 Bus
+</option>
+
+</select>
+
+<input
+id="vImage"
+placeholder="Photo URL"
+>
+
+<textarea
+id="vDescription"
+placeholder="වාහනයේ සම්පූර්ණ විස්තර"
+></textarea>
+
+</div>
+
+<button
+class="add-btn"
+onclick="addVehicle()"
+>
+➕ වාහනය එකතු කරන්න
+</button>
+
+</div>
+
+
+<!-- VEHICLES -->
+
+<div class="container">
+
+<div
+class="grid"
+id="vehicleList"
+>
+
+
+<!-- VEHICLE 1 -->
+
+<div class="card vehicle" data-category="car">
+
+<img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80">
+
+<div class="info">
+
+<h2>🚗 BMW 3 Series</h2>
+
+<div class="price">
+රු. 50,670,000
+</div>
+
+<div class="details">
+
+<div>📅 වර්ෂය:
+<span>2020</span></div>
+
+<div>📍 නගරය:
+<span>කොළඹ</span></div>
+
+<div>📦 Stock:
+<span>Available</span></div>
+
+<div>🔧 Parts:
+<span>Engine / Body / Interior</span></div>
+
+<div>⚙️ Gear:
+<span>Automatic</span></div>
+
+<div>⛽ Fuel:
+<span>Petrol</span></div>
+
+</div>
+
+<div class="description">
+
+හොඳ තත්ත්වයේ BMW රථයකි.
+නවීන පහසුකම් සහිත සුඛෝපභෝගී වාහනයකි.
+
+</div>
+
+<button class="contact-btn">
+📞 වැඩි විස්තර
+</button>
+
+</div>
+
+</div>
+
+
+<!-- VEHICLE 2 -->
+
+<div class="card vehicle" data-category="van">
+
+<img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80">
+
+<div class="info">
+
+<h2>🚐 Toyota Van</h2>
+
+<div class="price">
+රු. 34,548,000
+</div>
+
+<div class="details">
+
+<div>📅 වර්ෂය:
+<span>2021</span></div>
+
+<div>📍 නගරය:
+<span>මහනුවර</span></div>
+
+<div>📦 Stock:
+<span>Available</span></div>
+
+<div>🔧 Parts:
+<span>Engine / Body / Interior</span></div>
+
+<div>⚙️ Gear:
+<span>Manual</span></div>
+
+<div>⛽ Fuel:
+<span>Diesel</span></div>
+
+</div>
+
+<div class="description">
+
+පවුලේ සහ ව්‍යාපාරික භාවිතයට
+සුදුසු Toyota Van රථයකි.
+
+</div>
+
+<button class="contact-btn">
+📞 වැඩි විස්තර
+</button>
+
+</div>
+
+</div>
+
+
+<!-- VEHICLE 3 -->
+
+<div class="card vehicle" data-category="bike">
+
+<img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80">
+
+<div class="info">
+
+<h2>🏍️ Pulsar Bike</h2>
+
+<div class="price">
+රු. 745,000
+</div>
+
+<div class="details">
+
+<div>📅 වර්ෂය:
+<span>2020</span></div>
+
+<div>📍 නගරය:
+<span>මහනුවර</span></div>
+
+<div>📦 Stock:
+<span>Available</span></div>
+
+<div>🔧 Parts:
+<span>Engine / Brake / Body</span></div>
+
+<div>⚙️ Gear:
+<span>Manual</span></div>
+
+<div>⛽ Fuel:
+<span>Petrol</span></div>
+
+</div>
+
+<div class="description">
+
+දෛනික භාවිතයට සුදුසු
+හොඳ තත්ත්වයේ යතුරුපැදියකි.
+
+</div>
+
+<button class="contact-btn">
+📞 වැඩි විස්තර
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<footer>
+
+© 2026 Mahesh Vehicle Market
+
+</footer>
+
+
+<script>
+
+
+/* ADD VEHICLE */
+
+function addVehicle(){
+
+let name =
+document.getElementById("vName").value;
+
+let price =
+document.getElementById("vPrice").value;
+
+let year =
+document.getElementById("vYear").value;
+
+let city =
+document.getElementById("vCity").value;
+
+let stock =
+document.getElementById("vStock").value;
+
+let parts =
+document.getElementById("vParts").value;
+
+let category =
+document.getElementById("vCategory").value;
+
+let image =
+document.getElementById("vImage").value;
+
+let description =
+document.getElementById("vDescription").value;
+
+
+if(name==="" || price===""){
+
+alert("වාහන නම සහ මිල ඇතුළත් කරන්න.");
+
+return;
+
+}
+
+
+let card =
+document.createElement("div");
+
+card.className="card vehicle";
+
+card.setAttribute(
+"data-category",
+category
+);
+
+
+card.innerHTML=`
+
+<img src="${image || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80'}">
+
+<div class="info">
+
+<h2>🚘 ${name}</h2>
+
+<div class="price">
+රු. ${price}
+</div>
+
+<div class="details">
+
+<div>📅 වර්ෂය:
+<span>${year}</span></div>
+
+<div>📍 නගරය:
+<span>${city}</span></div>
+
+<div>📦 Stock:
+<span>${stock}</span></div>
+
+<div>🔧 Parts:
+<span>${parts}</span></div>
+
+</div>
+
+<div class="description">
+
+${description}
+
+</div>
+
+<button class="contact-btn">
+📞 වැඩි විස්තර
+</button>
+
+</div>
+`;
+
+
+document
+.getElementById("vehicleList")
+.appendChild(card);
+
+
+alert(
+"✅ " + name +
+" සාර්ථකව එකතු කළා!"
+);
+
+
+/* CLEAR FORM */
+
+document.getElementById("vName").value="";
+document.getElementById("vPrice").value="";
+document.getElementById("vYear").value="";
+document.getElementById("vCity").value="";
+document.getElementById("vStock").value="";
+document.getElementById("vParts").value="";
+document.getElementById("vImage").value="";
+document.getElementById("vDescription").value="";
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterVehicles(category){
+
+let vehicles =
+document.querySelectorAll(".vehicle");
+
+
+vehicles.forEach(function(vehicle){
+
+if(
+category==="all" ||
+vehicle.dataset.category===category
+){
+
+vehicle.style.display="block";
+
+}else{
+
+vehicle.style.display="none";
+
+}
+
+});
+
+}
+
+
+/* SEARCH */
+
+function searchVehicles(){
+
+let search =
+document
+.getElementById("searchBox")
+.value
+.toLowerCase();
+
+
+let vehicles =
+document.querySelectorAll(".vehicle");
+
+
+vehicles.forEach(function(vehicle){
+
+let text =
+vehicle.innerText.toLowerCase();
+
+
+if(text.includes(search)){
+
+vehicle.style.display="block";
+
+}else{
+
+vehicle.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+
+</body>
 </html>
