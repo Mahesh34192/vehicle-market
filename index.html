@@ -1,1 +1,1039 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f3f6fa;
+    color:#172033;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#0b1220,#1d4ed8);
+    color:white;
+    padding:18px 5%;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 15px rgba(0,0,0,.2);
+}
+
+.header{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#60a5fa;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:18px;
+    font-weight:bold;
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(135deg,#dbeafe,#eff6ff);
+    padding:40px 5%;
+}
+
+.hero-content{
+    max-width:1200px;
+    margin:auto;
+}
+
+.hero h1{
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#475569;
+    font-size:17px;
+    margin-bottom:25px;
+}
+
+.search{
+    background:white;
+    padding:8px;
+    border-radius:14px;
+    display:flex;
+    max-width:700px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.search input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:14px;
+    font-size:16px;
+}
+
+.search button{
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:0 22px;
+    border-radius:10px;
+    font-size:16px;
+}
+
+/* MAIN */
+.container{
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+.section-title{
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+/* CATEGORIES */
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.category{
+    background:white;
+    border:2px solid #e2e8f0;
+    border-radius:16px;
+    padding:22px 10px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    border-color:#2563eb;
+    transform:translateY(-3px);
+}
+
+.category .icon{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.category h3{
+    font-size:16px;
+}
+
+/* VEHICLES */
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.vehicle{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(15,23,42,.1);
+    transition:.2s;
+}
+
+.vehicle:hover{
+    transform:translateY(-5px);
+}
+
+.vehicle img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+}
+
+.vehicle-body{
+    padding:18px;
+}
+
+.vehicle-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.price{
+    color:#16a34a;
+    font-size:21px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin:12px 0;
+}
+
+.info div{
+    background:#f8fafc;
+    padding:9px;
+    border-radius:8px;
+    font-size:13px;
+}
+
+.description{
+    color:#64748b;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.order-btn{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:13px;
+    border-radius:10px;
+    margin-top:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* PAYMENT */
+.payment{
+    background:white;
+    margin-top:40px;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.payment h2{
+    margin-bottom:15px;
+}
+
+.payment-box{
+    background:#eff6ff;
+    border-left:5px solid #2563eb;
+    padding:20px;
+    border-radius:10px;
+    line-height:1.8;
+}
+
+.cod{
+    margin-top:20px;
+    background:#ecfdf5;
+    border-left:5px solid #16a34a;
+    padding:18px;
+    border-radius:10px;
+}
+
+.cod strong{
+    color:#15803d;
+}
+
+/* CUSTOMER FORM */
+.form-section{
+    background:white;
+    margin-top:35px;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.form-section h2{
+    margin-bottom:20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    padding:13px;
+    outline:none;
+    font-size:15px;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.submit{
+    margin-top:20px;
+    background:#16a34a;
+    color:white;
+    border:0;
+    padding:15px 25px;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    margin-top:50px;
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+footer p{
+    margin:6px;
+    color:#cbd5e1;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:500;
+    padding:20px;
+    overflow:auto;
+}
+
+.modal-box{
+    background:white;
+    max-width:600px;
+    margin:40px auto;
+    padding:25px;
+    border-radius:18px;
+}
+
+.close{
+    float:right;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    margin-bottom:15px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .vehicle-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    nav{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .search{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .search button{
+        padding:12px;
+    }
+
+    .vehicle-grid{
+        grid-template-columns:1fr;
+    }
+
+    .categories{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="header">
+
+<div class="logo">
+🚘 Mahesh <span>Vehicle Market</span>
+</div>
+
+<nav>
+<a href="#vehicles">වාහන</a>
+<a href="#order">Order</a>
+<a href="#bank">Bank Details</a>
+</nav>
+
+</div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>ඔබට අවශ්‍ය වාහනය මෙතැනින් සොයන්න 🚗</h1>
+
+<p>
+Cars • Vans • SUVs • Motorcycles • Buses • Lorries • Three Wheels
+</p>
+
+<div class="search">
+
+<input
+type="text"
+id="searchInput"
+placeholder="වාහන නම, Model, නගරය සොයන්න..."
+onkeyup="searchVehicles()"
+>
+
+<button onclick="searchVehicles()">
+🔍 Search
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- MAIN -->
+<div class="container">
+
+<h2 class="section-title">Vehicle Type</h2>
+
+<div class="categories">
+
+<div class="category" onclick="filterCategory('Car')">
+<div class="icon">🚗</div>
+<h3>Car</h3>
+</div>
+
+<div class="category" onclick="filterCategory('Van')">
+<div class="icon">🚐</div>
+<h3>Van</h3>
+</div>
+
+<div class="category" onclick="filterCategory('SUV')">
+<div class="icon">🚙</div>
+<h3>SUV / Jeep</h3>
+</div>
+
+<div class="category" onclick="filterCategory('Motorcycle')">
+<div class="icon">🏍️</div>
+<h3>Motorcycle</h3>
+</div>
+
+<div class="category" onclick="filterCategory('Pickup')">
+<div class="icon">🛻</div>
+<h3>Pickup / Double Cab</h3>
+</div>
+
+<div class="category" onclick="filterCategory('Bus')">
+<div class="icon">🚌</div>
+<h3>Bus</h3>
+</div>
+
+<div class="category" onclick="filterCategory('Lorry')">
+<div class="icon">🚚</div>
+<h3>Lorry</h3>
+</div>
+
+<div class="category" onclick="filterCategory('Three Wheel')">
+<div class="icon">🛺</div>
+<h3>Three Wheel</h3>
+</div>
+
+</div>
+
+
+<!-- VEHICLES -->
+<h2 class="section-title" id="vehicles">
+⭐ Available Vehicles
+</h2>
+
+<div class="vehicle-grid" id="vehicleGrid">
+
+
+<!-- VEHICLE 1 -->
+<div class="vehicle" data-type="Car" data-search="Toyota Premio Car Kandy">
+
+<img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=900&q=85">
+
+<div class="vehicle-body">
+
+<div class="vehicle-title">
+Toyota Premio
+</div>
+
+<div class="price">
+රු. 18,500,000
+</div>
+
+<div class="info">
+
+<div>📅 Year: 2020</div>
+<div>📍 Kandy</div>
+<div>📦 Stock: Available</div>
+<div>⚙️ Auto</div>
+
+</div>
+
+<div class="description">
+හොඳ තත්ත්වයේ Toyota Premio රථයක්.
+සම්පූර්ණ වාහන විස්තර සහ පරීක්ෂා කිරීමේ පහසුකම් ඇත.
+</div>
+
+<button class="order-btn"
+onclick="openOrder('Toyota Premio','රු. 18,500,000')">
+🛒 Order Vehicle
+</button>
+
+</div>
+</div>
+
+
+<!-- VEHICLE 2 -->
+<div class="vehicle" data-type="SUV" data-search="Toyota Land Cruiser SUV Colombo">
+
+<img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85">
+
+<div class="vehicle-body">
+
+<div class="vehicle-title">
+Toyota Land Cruiser
+</div>
+
+<div class="price">
+රු. 48,500,000
+</div>
+
+<div class="info">
+
+<div>📅 Year: 2021</div>
+<div>📍 Colombo</div>
+<div>📦 Stock: Available</div>
+<div>⚙️ Automatic</div>
+
+</div>
+
+<div class="description">
+Luxury SUV එකක්. Family සහ long distance travel සඳහා
+ඉතා සුදුසුයි.
+</div>
+
+<button class="order-btn"
+onclick="openOrder('Toyota Land Cruiser','රු. 48,500,000')">
+🛒 Order Vehicle
+</button>
+
+</div>
+</div>
+
+
+<!-- VEHICLE 3 -->
+<div class="vehicle" data-type="Van" data-search="Toyota Hiace Van Kandy">
+
+<img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=85">
+
+<div class="vehicle-body">
+
+<div class="vehicle-title">
+Toyota Hiace Van
+</div>
+
+<div class="price">
+රු. 34,500,000
+</div>
+
+<div class="info">
+
+<div>📅 Year: 2022</div>
+<div>📍 Kandy</div>
+<div>📦 Stock: Available</div>
+<div>⚙️ Diesel</div>
+
+</div>
+
+<div class="description">
+Passenger transport සහ business සඳහා
+සුදුසු quality van එකක්.
+</div>
+
+<button class="order-btn"
+onclick="openOrder('Toyota Hiace Van','රු. 34,500,000')">
+🛒 Order Vehicle
+</button>
+
+</div>
+</div>
+
+
+<!-- VEHICLE 4 -->
+<div class="vehicle" data-type="Motorcycle" data-search="Honda Motorcycle Gampaha">
+
+<img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85">
+
+<div class="vehicle-body">
+
+<div class="vehicle-title">
+Honda Motorcycle
+</div>
+
+<div class="price">
+රු. 1,850,000
+</div>
+
+<div class="info">
+
+<div>📅 Year: 2023</div>
+<div>📍 Gampaha</div>
+<div>📦 Stock: Available</div>
+<div>⚙️ Petrol</div>
+
+</div>
+
+<div class="description">
+Daily use සඳහා හොඳ fuel economy සහිත
+motorcycle එකක්.
+</div>
+
+<button class="order-btn"
+onclick="openOrder('Honda Motorcycle','රු. 1,850,000')">
+🛒 Order Vehicle
+</button>
+
+</div>
+</div>
+
+
+<!-- VEHICLE 5 -->
+<div class="vehicle" data-type="Three Wheel" data-search="Bajaj Three Wheel Kandy">
+
+<img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=900&q=85">
+
+<div class="vehicle-body">
+
+<div class="vehicle-title">
+Bajaj Three Wheel
+</div>
+
+<div class="price">
+රු. 1,950,000
+</div>
+
+<div class="info">
+
+<div>📅 Year: 2021</div>
+<div>📍 Kandy</div>
+<div>📦 Stock: Available</div>
+<div>⚙️ Petrol</div>
+
+</div>
+
+<div class="description">
+Business සහ daily transport සඳහා
+හොඳ තත්ත්වයේ Three Wheel එකක්.
+</div>
+
+<button class="order-btn"
+onclick="openOrder('Bajaj Three Wheel','රු. 1,950,000')">
+🛒 Order Vehicle
+</button>
+
+</div>
+</div>
+
+
+<!-- VEHICLE 6 -->
+<div class="vehicle" data-type="Pickup" data-search="Toyota Hilux Pickup Colombo">
+
+<img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=900&q=85">
+
+<div class="vehicle-body">
+
+<div class="vehicle-title">
+Toyota Hilux
+</div>
+
+<div class="price">
+රු. 32,500,000
+</div>
+
+<div class="info">
+
+<div>📅 Year: 2021</div>
+<div>📍 Colombo</div>
+<div>📦 Stock: Available</div>
+<div>⚙️ Diesel</div>
+
+</div>
+
+<div class="description">
+Strong pickup vehicle එකක්. Business සහ
+heavy work සඳහා සුදුසුයි.
+</div>
+
+<button class="order-btn"
+onclick="openOrder('Toyota Hilux','රු. 32,500,000')">
+🛒 Order Vehicle
+</button>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- BANK DETAILS -->
+<section class="payment" id="bank">
+
+<h2>🏦 Bank Payment Details</h2>
+
+<div class="payment-box">
+
+<strong>Bank Name:</strong> ඔබගේ Bank Name<br>
+peoples bank
+<strong>Account Name:</strong> ඔබගේ Account Name<br>
+MAHESH KRiSANTHA GUNAWARDHANA
+<strong>Account Number:</strong256200270024217
+
+<strong>Branch:</strong> br>pilimathalawa
+
+<strong>Payment Note:</strong>
+Bank Transfer කළ පසු Order Number එක සඳහන් කරන්න.
+
+</div>
+
+<div class="cod">
+
+<strong>💵 Cash On Delivery Available</strong>
+
+<p>
+ඔබට Bank Transfer කිරීම අවශ්‍ය නැත්නම්
+Cash on Delivery option එක තෝරාගත හැක.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CUSTOMER ORDER -->
+<section class="form-section" id="order">
+
+<h2>📋 Customer Order Details</h2>
+
+<form onsubmit="submitOrder(event)">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Customer Name</label>
+
+<input
+type="text"
+id="customerName"
+placeholder="ඔබගේ නම"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="07XXXXXXXX"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+id="email"
+placeholder="example@gmail.com">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Payment Method</label>
+
+<select id="paymentMethod">
+
+<option>Cash On Delivery</option>
+<option>Bank Transfer</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Vehicle</label>
+
+<input
+type="text"
+id="selectedVehicle"
+placeholder="Order Vehicle button එකෙන් තෝරන්න"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Vehicle Price</label>
+
+<input
+type="text"
+id="selectedPrice"
+readonly>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Delivery Address</label>
+
+<textarea
+id="address"
+placeholder="සම්පූර්ණ ලිපිනය"
+required></textarea>
+
+</div>
+
+</div>
+
+
+<button class="submit" type="submit">
+✅ Place Vehicle Order
+</button>
+
+</form>
+
+</section>
+
+</div>
+
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<span class="close" onclick="closeModal()">×</span>
+
+<h2>🚗 Vehicle Order</h2>
+
+<p id="modalText"></p>
+
+<br>
+
+<p>
+Customer Details Form එක පහළින් පුරවා
+Order එක Submit කරන්න.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+<h3>🚘 Mahesh Vehicle Market</h3>
+
+<p>Quality Vehicles • Easy Ordering • Cash On Delivery</p>
+
+<p>© 2026 Mahesh Vehicle Market</p>
+
+</footer>
+
+
+<script>
+
+/* SEARCH */
+function searchVehicles(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let vehicles =
+document.querySelectorAll(".vehicle");
+
+vehicles.forEach(function(vehicle){
+
+let text =
+vehicle.dataset.search.toLowerCase();
+
+if(text.includes(input)){
+vehicle.style.display="block";
+}else{
+vehicle.style.display="none";
+}
+
+});
+
+}
+
+
+/* CATEGORY */
+function filterCategory(type){
+
+let vehicles =
+document.querySelectorAll(".vehicle");
+
+vehicles.forEach(function(vehicle){
+
+if(vehicle.dataset.type === type){
+
+vehicle.style.display="block";
+
+}else{
+
+vehicle.style.display="none";
+
+}
+
+});
+
+}
+
+
+/* ORDER */
+function openOrder(vehicle,price){
+
+document.getElementById("selectedVehicle").value=vehicle;
+
+document.getElementById("selectedPrice").value=price;
+
+document.getElementById("modalText").innerHTML=
+"<strong>"+vehicle+"</strong><br>"+
+"Price: "+price;
+
+document.getElementById("modal").style.display="block";
+
+document.getElementById("order")
+.scrollIntoView({behavior:"smooth"});
+
+}
+
+
+/* CLOSE */
+function closeModal(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
+
+/* SUBMIT ORDER */
+function submitOrder(event){
+
+event.preventDefault();
+
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("phone").value;
+
+let vehicle =
+document.getElementById("selectedVehicle").value;
+
+let payment =
+document.getElementById("paymentMethod").value;
+
+alert(
+"✅ Order Received!\n\n"+
+"Customer: "+name+"\n"+
+"Phone: "+phone+"\n"+
+"Vehicle: "+vehicle+"\n"+
+"Payment: "+payment+
+"\n\nඔබගේ Order එක සාර්ථකව ලබා ගන්නා ලදී."
+);
+
+}
+
+</script>
+
+</body>
+</html>
