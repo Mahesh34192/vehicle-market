@@ -1,1 +1,377 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f4f7;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#111827,#2563eb);
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+
+header h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:15px;
+}
+
+.search-box{
+    padding:20px;
+    background:white;
+    text-align:center;
+}
+
+.search-box input{
+    width:90%;
+    max-width:600px;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding:15px;
+    background:white;
+}
+
+.categories button{
+    border:0;
+    background:#e5e7eb;
+    padding:11px 18px;
+    border-radius:20px;
+    white-space:nowrap;
+    cursor:pointer;
+}
+
+.categories button:hover{
+    background:#2563eb;
+    color:white;
+}
+
+.vehicle-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    padding:20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
+
+.card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:17px;
+}
+
+.card h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#16a34a;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.info{
+    line-height:1.8;
+    color:#555;
+    font-size:14px;
+}
+
+.details-btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:0;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.details-btn:hover{
+    background:#1d4ed8;
+}
+
+footer{
+    margin-top:30px;
+    padding:25px;
+    text-align:center;
+    background:#111827;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚘 Mahesh Vehicle Market</h1>
+    <p>ඔබට අවශ්‍ය වාහනය පහසුවෙන් සොයාගන්න</p>
+</header>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 වාහනයක් සොයන්න..."
+        onkeyup="searchVehicles()"
+    >
+</div>
+
+<div class="categories">
+    <button onclick="filterVehicles('all')">සියල්ල</button>
+    <button onclick="filterVehicles('car')">🚗 Cars</button>
+    <button onclick="filterVehicles('van')">🚐 Vans</button>
+    <button onclick="filterVehicles('bike')">🏍️ Bikes</button>
+    <button onclick="filterVehicles('three')">🛺 Three Wheel</button>
+    <button onclick="filterVehicles('bus')">🚌 Bus</button>
+    <button onclick="filterVehicles('truck')">🚚 Trucks</button>
+</div>
+
+<div class="vehicle-grid" id="vehicleGrid">
+
+    <div class="card" data-category="car">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h2>BMW Car</h2>
+            <div class="price">රු. 50,670,000</div>
+
+            <div class="info">
+                📅 වර්ෂය: 2020<br>
+                📍 නගරය: මහනුවර<br>
+                📦 Stock: තිබේ<br>
+                🔧 Parts: සියලුම Parts<br>
+                📝 විස්තර: හොඳ තත්ත්වයේ වාහනයකි.
+            </div>
+
+            <button class="details-btn"
+            onclick="showDetails('BMW Car','රු. 50,670,000')">
+            වැඩි විස්තර
+            </button>
+        </div>
+    </div>
+
+
+    <div class="card" data-category="van">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h2>Toyota Van</h2>
+            <div class="price">රු. 34,548,000</div>
+
+            <div class="info">
+                📅 වර්ෂය: 2021<br>
+                📍 නගරය: කොළඹ<br>
+                📦 Stock: තිබේ<br>
+                🔧 Parts: Toyota Parts<br>
+                📝 විස්තර: Family සහ Business භාවිතයට සුදුසුයි.
+            </div>
+
+            <button class="details-btn"
+            onclick="showDetails('Toyota Van','රු. 34,548,000')">
+            වැඩි විස්තර
+            </button>
+        </div>
+    </div>
+
+
+    <div class="card" data-category="bike">
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h2>Pulsar Bike</h2>
+            <div class="price">රු. 745,000</div>
+
+            <div class="info">
+                📅 වර්ෂය: 2020<br>
+                📍 නගරය: මහනුවර<br>
+                📦 Stock: තිබේ<br>
+                🔧 Parts: Bike Parts<br>
+                📝 විස්තර: හොඳ condition එකක පවතී.
+            </div>
+
+            <button class="details-btn"
+            onclick="showDetails('Pulsar Bike','රු. 745,000')">
+            වැඩි විස්තර
+            </button>
+        </div>
+    </div>
+
+
+    <div class="card" data-category="three">
+        <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h2>Bajaj Three Wheel</h2>
+            <div class="price">රු. 10,250,000</div>
+
+            <div class="info">
+                📅 වර්ෂය: 2019<br>
+                📍 නගරය: ගම්පහ<br>
+                📦 Stock: තිබේ<br>
+                🔧 Parts: Bajaj Parts<br>
+                📝 විස්තර: දෛනික භාවිතයට සුදුසුයි.
+            </div>
+
+            <button class="details-btn"
+            onclick="showDetails('Bajaj Three Wheel','රු. 10,250,000')">
+            වැඩි විස්තර
+            </button>
+        </div>
+    </div>
+
+
+    <div class="card" data-category="truck">
+        <img src="https://images.unsplash.com/photo-1586191582056-d7e8c5c9d4e3?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h2>Nissan Truck</h2>
+            <div class="price">රු. 708,780,000</div>
+
+            <div class="info">
+                📅 වර්ෂය: 2020<br>
+                📍 නගරය: කොළඹ<br>
+                📦 Stock: තිබේ<br>
+                🔧 Parts: Truck Parts<br>
+                📝 විස්තර: භාණ්ඩ ප්‍රවාහනය සඳහා සුදුසුයි.
+            </div>
+
+            <button class="details-btn"
+            onclick="showDetails('Nissan Truck','රු. 708,780,000')">
+            වැඩි විස්තර
+            </button>
+        </div>
+    </div>
+
+
+    <div class="card" data-category="bus">
+        <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=900&q=80">
+
+        <div class="card-content">
+            <h2>Leyland Bus</h2>
+            <div class="price">රු. 56,890,000</div>
+
+            <div class="info">
+                📅 වර්ෂය: 2018<br>
+                📍 නගරය: කුරුණෑගල<br>
+                📦 Stock: තිබේ<br>
+                🔧 Parts: Bus Parts<br>
+                📝 විස්තර: මගී ප්‍රවාහනය සඳහා සුදුසුයි.
+            </div>
+
+            <button class="details-btn"
+            onclick="showDetails('Leyland Bus','රු. 56,890,000')">
+            වැඩි විස්තර
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Mahesh Vehicle Market
+</footer>
+
+
+<script>
+
+function filterVehicles(category){
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        if(category === "all"){
+            card.style.display = "block";
+        }
+        else if(card.dataset.category === category){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+}
+
+
+function searchVehicles(){
+
+    const search =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        if(text.includes(search)){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+}
+
+
+function showDetails(name,price){
+
+    alert(
+        "වාහනය: " + name +
+        "\nමිල: " + price +
+        "\n\nවැඩි විස්තර සඳහා අපව අමතන්න."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
