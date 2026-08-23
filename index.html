@@ -1,1 +1,556 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mahesh Vehicle Market</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f6f8;
+  color:#222;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:25px 15px;
+  text-align:center;
+}
+
+header h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+header p{
+  font-size:16px;
+}
+
+.search-box{
+  max-width:700px;
+  margin:20px auto;
+  padding:0 15px;
+}
+
+.search-box input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:16px;
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:10px 15px 20px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.categories button{
+  border:0;
+  background:#2563eb;
+  color:white;
+  padding:11px 18px;
+  border-radius:20px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.categories button:hover{
+  background:#1d4ed8;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 15px 40px;
+}
+
+.vehicle-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.card img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+}
+
+.card-content{
+  padding:16px;
+}
+
+.card h2{
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.price{
+  color:#16a34a;
+  font-size:21px;
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.details{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  font-size:14px;
+  margin:12px 0;
+}
+
+.detail{
+  background:#f3f4f6;
+  padding:8px;
+  border-radius:7px;
+}
+
+.description{
+  color:#555;
+  line-height:1.5;
+  margin:10px 0;
+}
+
+.view-btn{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#111827;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.view-btn:hover{
+  background:#374151;
+}
+
+.no-result{
+  text-align:center;
+  padding:40px;
+  font-size:18px;
+}
+
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:20px;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:24px;
+  }
+
+  .vehicle-grid{
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    height:220px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚗 Mahesh Vehicle Market</h1>
+  <p>ශ්‍රී ලංකාවේ වාහන මිලදී ගැනීමට සහ විකිණීමට</p>
+</header>
+
+<div class="search-box">
+  <input
+    type="text"
+    id="search"
+    placeholder="🔎 වාහනයක් සොයන්න..."
+    onkeyup="searchVehicles()"
+  >
+</div>
+
+<div class="categories">
+  <button onclick="filterVehicles('All')">සියල්ල</button>
+  <button onclick="filterVehicles('Car')">🚗 Cars</button>
+  <button onclick="filterVehicles('Jeep')">🚙 Jeeps</button>
+  <button onclick="filterVehicles('Van')">🚐 Vans</button>
+  <button onclick="filterVehicles('Bike')">🏍️ Bikes</button>
+  <button onclick="filterVehicles('Threewheel')">🛺 Three Wheel</button>
+</div>
+
+<div class="container">
+
+  <div id="vehicleGrid" class="vehicle-grid"></div>
+
+  <div id="noResult" class="no-result" style="display:none;">
+    😔 වාහනයක් හමු වුණේ නැහැ.
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Mahesh Vehicle Market</p>
+  <p>වාහන දැන්වීම් සඳහා අප සමඟ සම්බන්ධ වන්න</p>
+</footer>
+
+<script>
+
+const vehicles = [
+
+{
+name:"Toyota Aqua",
+category:"Car",
+year:2021,
+price:"රු. 8,950,000",
+location:"මහනුවර",
+fuel:"Hybrid",
+gear:"Automatic",
+mileage:"45,000 km",
+image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80",
+description:"හොඳ තත්ත්වයේ Toyota Aqua රථයකි. නගර භාවිතයට සුදුසුයි."
+},
+
+{
+name:"Honda Vezel",
+category:"Car",
+year:2020,
+price:"රු. 11,750,000",
+location:"කොළඹ",
+fuel:"Hybrid",
+gear:"Automatic",
+mileage:"52,000 km",
+image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80",
+description:"ආකර්ෂණීය පෙනුමක් සහ හොඳ fuel economy එකක් සහිත රථයකි."
+},
+
+{
+name:"Toyota Prado",
+category:"Jeep",
+year:2019,
+price:"රු. 28,500,000",
+location:"මහනුවර",
+fuel:"Diesel",
+gear:"Automatic",
+mileage:"68,000 km",
+image:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80",
+description:"පවුලේ ගමන් සහ දුර ගමන් සඳහා සුදුසු Toyota Prado රථයකි."
+},
+
+{
+name:"Suzuki Wagon R",
+category:"Car",
+year:2020,
+price:"රු. 6,850,000",
+location:"කුරුණෑගල",
+fuel:"Petrol",
+gear:"Automatic",
+mileage:"48,000 km",
+image:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=900&q=80",
+description:"ආර්ථිකමය සහ නගර භාවිතයට පහසු Suzuki Wagon R රථයකි."
+},
+
+{
+name:"Bajaj RE",
+category:"Threewheel",
+year:2022,
+price:"රු. 2,450,000",
+location:"මහනුවර",
+fuel:"Petrol",
+gear:"Manual",
+mileage:"32,000 km",
+image:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80",
+description:"දෛනික ගමන් සහ ආදායම් කටයුතු සඳහා සුදුසු Three Wheel රථයකි."
+},
+
+{
+name:"Toyota Hiace",
+category:"Van",
+year:2018,
+price:"රු. 14,900,000",
+location:"කොළඹ",
+fuel:"Diesel",
+gear:"Manual",
+mileage:"95,000 km",
+image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80",
+description:"පවුල් ගමන්, සංචාරක සේවා සහ ව්‍යාපාරික කටයුතු සඳහා සුදුසු Van එකකි."
+},
+
+{
+name:"Honda Dio",
+category:"Bike",
+year:2022,
+price:"රු. 585,000",
+location:"මහනුවර",
+fuel:"Petrol",
+gear:"Automatic",
+mileage:"18,000 km",
+image:"https://images.unsplash.com/photo-1558980664-10ea7b4f2b31?auto=format&fit=crop&w=900&q=80",
+description:"නගර භාවිතයට පහසු Honda Dio scooter එකකි."
+},
+
+{
+name:"Toyota Corolla",
+category:"Car",
+year:2019,
+price:"රු. 9,750,000",
+location:"ගම්පහ",
+fuel:"Petrol",
+gear:"Automatic",
+mileage:"61,000 km",
+image:"https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=900&q=80",
+description:"සුවපහසු සහ විශ්වාසදායක Toyota Corolla රථයකි."
+},
+
+{
+name:"BMW 3 Series",
+category:"Car",
+year:2020,
+price:"රු. 18,500,000",
+location:"කොළඹ",
+fuel:"Petrol",
+gear:"Automatic",
+mileage:"39,000 km",
+image:"https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80",
+description:"Premium BMW රථයකි. සුවපහසු interior සහ හොඳ performance එකක් ඇත."
+},
+
+{
+name:"Mitsubishi Montero",
+category:"Jeep",
+year:2018,
+price:"රු. 17,900,000",
+location:"මහනුවර",
+fuel:"Diesel",
+gear:"Automatic",
+mileage:"82,000 km",
+image:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80",
+description:"දුර ගමන් සහ පවුලේ භාවිතයට සුදුසු Jeep රථයකි."
+},
+
+{
+name:"Suzuki Alto",
+category:"Car",
+year:2021,
+price:"රු. 5,950,000",
+location:"ගාල්ල",
+fuel:"Petrol",
+gear:"Automatic",
+mileage:"35,000 km",
+image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80",
+description:"ඉන්ධන පිරිමැසුම්දායක සහ නගර භාවිතයට සුදුසු කුඩා මෝටර් රථයකි."
+},
+
+{
+name:"Yamaha FZ",
+category:"Bike",
+year:2021,
+price:"රු. 725,000",
+location:"කොළඹ",
+fuel:"Petrol",
+gear:"Manual",
+mileage:"22,000 km",
+image:"https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=900&q=80",
+description:"Sporty design එකක් සහිත Yamaha bike එකකි."
+}
+
+];
+
+
+let currentCategory = "All";
+
+
+function displayVehicles(list){
+
+  const grid = document.getElementById("vehicleGrid");
+  const noResult = document.getElementById("noResult");
+
+  grid.innerHTML = "";
+
+  if(list.length === 0){
+    noResult.style.display = "block";
+    return;
+  }
+
+  noResult.style.display = "none";
+
+  list.forEach((vehicle,index)=>{
+
+    grid.innerHTML += `
+
+      <div class="card">
+
+        <img
+          src="${vehicle.image}"
+          alt="${vehicle.name}"
+          onerror="this.src='https://via.placeholder.com/900x600?text=Vehicle+Image'"
+        >
+
+        <div class="card-content">
+
+          <h2>${vehicle.name}</h2>
+
+          <div class="price">
+            ${vehicle.price}
+          </div>
+
+          <div class="details">
+
+            <div class="detail">
+              📅 වර්ෂය: ${vehicle.year}
+            </div>
+
+            <div class="detail">
+              📍 ${vehicle.location}
+            </div>
+
+            <div class="detail">
+              ⛽ ${vehicle.fuel}
+            </div>
+
+            <div class="detail">
+              ⚙️ ${vehicle.gear}
+            </div>
+
+            <div class="detail">
+              🛣️ ${vehicle.mileage}
+            </div>
+
+            <div class="detail">
+              🏷️ ${vehicle.category}
+            </div>
+
+          </div>
+
+          <p class="description">
+            ${vehicle.description}
+          </p>
+
+          <button
+            class="view-btn"
+            onclick="showDetails(${index})">
+            👁️ වැඩි විස්තර
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+function filterVehicles(category){
+
+  currentCategory = category;
+
+  if(category === "All"){
+    displayVehicles(vehicles);
+  }else{
+
+    const filtered = vehicles.filter(
+      vehicle => vehicle.category === category
+    );
+
+    displayVehicles(filtered);
+  }
+
+}
+
+
+function searchVehicles(){
+
+  const searchText =
+    document.getElementById("search").value.toLowerCase();
+
+  let filtered = vehicles.filter(vehicle => {
+
+    const text = `
+      ${vehicle.name}
+      ${vehicle.category}
+      ${vehicle.location}
+      ${vehicle.year}
+      ${vehicle.fuel}
+    `.toLowerCase();
+
+    return text.includes(searchText);
+
+  });
+
+
+  if(currentCategory !== "All"){
+
+    filtered = filtered.filter(
+      vehicle => vehicle.category === currentCategory
+    );
+
+  }
+
+  displayVehicles(filtered);
+
+}
+
+
+function showDetails(index){
+
+  const vehicle = vehicles[index];
+
+  alert(
+`🚗 ${vehicle.name}
+
+💰 මිල: ${vehicle.price}
+
+📅 වර්ෂය: ${vehicle.year}
+
+📍 ස්ථානය: ${vehicle.location}
+
+⛽ Fuel: ${vehicle.fuel}
+
+⚙️ Gear: ${vehicle.gear}
+
+🛣️ Mileage: ${vehicle.mileage}
+
+📝 විස්තර:
+${vehicle.description}
+
+📞 වාහනය පිළිබඳ වැඩි විස්තර සඳහා අමතන්න.`
+  );
+
+}
+
+
+// Website open වෙනකොට සියලුම වාහන පෙන්වන්න
+displayVehicles(vehicles);
+
+</script>
+
+</body>
+</html>
