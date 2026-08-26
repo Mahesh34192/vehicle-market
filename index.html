@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mahesh Market</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6f8;
+  color:#222;
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+header h1{
+  font-size:28px;
+}
+
+header p{
+  margin-top:8px;
+  color:#d1d5db;
+}
+
+.search{
+  padding:15px;
+  background:white;
+  text-align:center;
+}
+
+.search input{
+  width:90%;
+  max-width:600px;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px;
+  background:white;
+}
+
+.categories button{
+  border:0;
+  background:#e5e7eb;
+  padding:10px 18px;
+  border-radius:20px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.categories button:hover{
+  background:#2563eb;
+  color:white;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:15px;
+}
+
+.product{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 3px 10px #0001;
+}
+
+.product img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.product-info{
+  padding:12px;
+}
+
+.product h3{
+  margin-bottom:8px;
+}
+
+.price{
+  color:#16a34a;
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.product button{
+  width:100%;
+  padding:11px;
+  border:0;
+  border-radius:7px;
+  background:#2563eb;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.cart{
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  background:#16a34a;
+  color:white;
+  padding:15px 20px;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛒 Mahesh Market</h1>
+  <p>ඔබට අවශ්‍ය භාණ්ඩ පහසුවෙන් මිලදී ගන්න</p>
+</header>
+
+<div class="search">
+  <input
+    type="text"
+    id="search"
+    placeholder="🔍 භාණ්ඩයක් සොයන්න..."
+    onkeyup="searchProducts()"
+  >
+</div>
+
+<div class="categories">
+  <button onclick="filterProducts('all')">සියල්ල</button>
+  <button onclick="filterProducts('tv')">📺 TV</button>
+  <button onclick="filterProducts('phone')">📱 Phone</button>
+  <button onclick="filterProducts('laptop')">💻 Laptop</button>
+  <button onclick="filterProducts('fridge')">🧊 Fridge</button>
+  <button onclick="filterProducts('computer')">🖥️ Computer</button>
+  <button onclick="filterProducts('furniture')">🛋️ Furniture</button>
+</div>
+
+<div class="products" id="products"></div>
+
+<div class="cart" onclick="showCart()">
+  🛒 Cart: <span id="cartCount">0</span>
+</div>
+
+<footer>
+  <p>© 2026 Mahesh Market</p>
+  <p>WhatsApp Orders: 0751551758</p>
+</footer>
+
+<script>
+
+const products = [
+
+{
+ name:"Samsung Smart TV",
+ category:"tv",
+ price:"රු. 125,000",
+ image:"https://images.unsplash.com/photo-1593784991095-a205069470b6"
+},
+
+{
+ name:"iPhone",
+ category:"phone",
+ price:"රු. 185,000",
+ image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd"
+},
+
+{
+ name:"Laptop Computer",
+ category:"laptop",
+ price:"රු. 245,000",
+ image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+},
+
+{
+ name:"Refrigerator",
+ category:"fridge",
+ price:"රු. 175,000",
+ image:"https://images.unsplash.com/photo-1584568694244-14fbdf83bd30"
+},
+
+{
+ name:"Desktop Computer",
+ category:"computer",
+ price:"රු. 195,000",
+ image:"https://images.unsplash.com/photo-1593640408182-31c70c8268f5"
+},
+
+{
+ name:"
