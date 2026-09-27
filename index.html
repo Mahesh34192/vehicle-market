@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LANKA MOTORS - Colombo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial; background:#f5f7fa; margin:0}
+.header{background:white; padding:15px; display:flex; justify-content:space-between; font-weight:bold}
+.card{background:white; border-radius:12px; padding:12px; margin:12px; box-shadow:0 2px 10px #0001}
+.price{color:#0052cc; font-weight:bold; font-size:18px}
+.bank{background:#eef3ff; padding:15px; margin:15px; border-radius:12px; border:1px dashed #0052cc}
+</style>
+</head>
+<body>
+<div class="header"><span>🇱🇰 LANKA MOTORS</span><span>Stock: <span id="stockCount">0</span></span></div>
 
+<div id="carList"></div>
+
+<div class="bank">
+<h3>🏦 Bank Details for Payment</h3>
+<p><b>Bank:</b> Bank of Ceylon - Fort Branch</p>
+<p><b>Account Name:</b> Lanka Motors (Pvt) Ltd</p>
+<p><b>Account No:</b> 001-2345-6789</p>
+<p><b>Reference:</b> Car Title එක දාන්න</p>
+</div>
+
+<div class="bank" style="background:#fff8e6">
+<h3>👥 Team Commission Dashboard</h3>
+<div id="teamBox"></div>
+</div>
+
+<script>
+// මෙතන තමයි ඔයා Auto Update කරන්නේ - Google Sheet එකට Link කරන්න පුළුවන්
+const cars = [
+  {title:"Toyota Prius 2023 Hybrid", price:"LKR 8,500,000", desc:"Hybrid - 45,000km - Auto - Colombo", team:"Nimal - 3% = LKR 255,000"},
+  {title:"Honda Civic 2022 Turbo", price:"LKR 9,200,000", desc:"Petrol - 32,000km - Manual - Galle", team:"Kamal - 2% = LKR 184,000"},
+];
+
+let html = "";
+cars.forEach(c => {
+  html += `<div class="card"><h3>${c.title}</h3><div class="price">${c.price}</div><p>${c.desc}</p><small>Team Commission: ${c.team}</small><br><br><button>View Details</button> <button style="background:#ffcc00">Boost LKR 1,500</button></div>`;
+});
+document.getElementById("carList").innerHTML = html;
+document.getElementById("stockCount").innerText = cars.length;
+document.getElementById("teamBox").innerHTML = "Total Commission This Month: <b>LKR 439,000</b><br>Pending Payout: LKR 255,000 to Nimal";
+</script>
+</body>
+</html>
